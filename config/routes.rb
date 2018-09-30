@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :users
   resources :students
   resources :admins
+  resources :tutors
+  resources :careers
 end
