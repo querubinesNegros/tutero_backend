@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  filepable: one
+  filepable_type: Filepable
+  name: MyString
+
+two:
+  filepable: two
+  filepable_type: Filepable
+  name: MyString

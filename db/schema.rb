@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_033600) do
+ActiveRecord::Schema.define(version: 2018_09_30_152842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,29 @@ ActiveRecord::Schema.define(version: 2018_09_30_033600) do
 
   create_table "class_posts", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fileps", force: :cascade do |t|
+    t.string "filepable_type"
+    t.bigint "filepable_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "post_id"
+    t.index ["filepable_type", "filepable_id"], name: "index_fileps_on_filepable_type_and_filepable_id"
+    t.index ["post_id"], name: "index_fileps_on_post_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pdfs", force: :cascade do |t|
+    t.string "path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
