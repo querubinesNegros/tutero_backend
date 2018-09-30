@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_013027) do
+ActiveRecord::Schema.define(version: 2018_09_30_033600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(version: 2018_09_30_013027) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "schedules_students", id: false, force: :cascade do |t|
+    t.bigint "student_id"
+    t.bigint "schedule_id"
+    t.index ["schedule_id"], name: "index_schedules_students_on_schedule_id"
+    t.index ["student_id"], name: "index_schedules_students_on_student_id"
+  end
+
   create_table "schedules_tutors", id: false, force: :cascade do |t|
     t.bigint "tutor_id"
     t.bigint "schedule_id"
@@ -73,6 +80,24 @@ ActiveRecord::Schema.define(version: 2018_09_30_013027) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tutorings", force: :cascade do |t|
+    t.bigint "topic_id"
+    t.string "type_t"
+    t.bigint "schedule_id"
+    t.integer "duration"
+    t.text "noteStudent"
+    t.text "noteTutor"
+    t.bigint "student_id"
+    t.date "date"
+    t.integer "score"
+    t.text "review"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["schedule_id"], name: "index_tutorings_on_schedule_id"
+    t.index ["student_id"], name: "index_tutorings_on_student_id"
+    t.index ["topic_id"], name: "index_tutorings_on_topic_id"
+  end
+
   create_table "tutors", force: :cascade do |t|
     t.integer "ammountStudents"
     t.datetime "created_at", null: false
@@ -93,7 +118,12 @@ ActiveRecord::Schema.define(version: 2018_09_30_013027) do
 
   add_foreign_key "posts", "admins"
   add_foreign_key "posts", "class_posts"
+  add_foreign_key "schedules_students", "schedules"
+  add_foreign_key "schedules_students", "students"
   add_foreign_key "schedules_tutors", "schedules"
   add_foreign_key "schedules_tutors", "tutors"
   add_foreign_key "students", "tutors"
+  add_foreign_key "tutorings", "schedules"
+  add_foreign_key "tutorings", "students"
+  add_foreign_key "tutorings", "topics"
 end
