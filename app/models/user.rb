@@ -12,7 +12,7 @@ class User < ApplicationRecord
   format: { with: VALID_PASSWORD_REGEX }
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
   validates :lastname, presence: true, length: { minimum: 2, maximum: 50 }  
-  #validates :userable, presence: true
+  validates :userable, presence: true
   
 end
 
