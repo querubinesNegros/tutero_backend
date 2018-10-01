@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  age: 1
+  stratus: 1
+  pbm: 1
+  tutor: one
+
+two:
+  age: 1
+  stratus: 1
+  pbm: 1
+  tutor: two

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  topic: one
+  type: 
+  schedule: one
+  duration: 1
+  noteStudent: MyText
+  noteTutor: MyText
+  student: one
+  date: 2018-09-29
+  score: 1
+  review: MyText
+
+two:
+  topic: two
+  type: 
+  schedule: two
+  duration: 1
+  noteStudent: MyText
+  noteTutor: MyText
+  student: two
+  date: 2018-09-29
+  score: 1
+  review: MyText
