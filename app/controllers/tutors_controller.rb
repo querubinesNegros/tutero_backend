@@ -5,7 +5,7 @@ class TutorsController < ApplicationController
     end
     def show
 
-        tutor = Tutor.find(params[:id]).schedules
+        tutor = Tutor.find(params[:id])
 
         render json: {status: "SUCCESS" , message: "Loaded post", data: tutor},status: :ok
 

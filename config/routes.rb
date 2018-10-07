@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :students do
+    resources :users
+  end
+
+  
   resources :users
-  resources :students
   resources :admins
   resources :tutors
   resources :careers
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
   resources :class_posts
   resources :schedules
   resources :topics
+  resources :tutorings
   
   
 end
