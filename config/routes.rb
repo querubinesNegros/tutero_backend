@@ -5,4 +5,13 @@ Rails.application.routes.draw do
   resources :admins
   resources :tutors
   resources :careers
+  resources :posts
+  resources :pdfs
+  resources :images
+  resources :fileps
+  resources :class_posts
+  resources :schedules
+  resources :topics
+  
+  
 end
