@@ -13,9 +13,9 @@ class UsersController < ApplicationController
       end
 
       def create
-        user = User.new(book_params)
+        user = User.new(user_params)
     
-        if @User.save
+        if user.save
           render json: user, status: :created, location: user
         else
           render json: user.errors, status: :unprocessable_entity
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     
       # PATCH/PUT /books/1
       def update
+        user = User.find(params[:id])
         if user.update(user_params)
           render json: user
         else
@@ -33,17 +34,18 @@ class UsersController < ApplicationController
     
       # DELETE /books/1
       def destroy
+        user = User.find(params[:id])
         user.destroy
       end
     
       private
         # Use callbacks to share common setup or constraints between actions.
-        def set_book
-          @book = Book.find(params[:id])
+        def set_user
+          user = User.find(params[:id])
         end
     
         # Only allow a trusted parameter "white list" through.
         def user_params
-          params.require(:user).permit(:name, :lastname, :password, :year)
+          params.require(:user).permit(:name, :lastname, :password)
         end
 end

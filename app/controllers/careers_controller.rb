@@ -15,7 +15,7 @@ class CareersController < ApplicationController
       def create
         career = Career.new(book_params)
     
-        if Career.save
+        if career.save
           render json: career, status: :created, location: career
         else
           render json: career.errors, status: :unprocessable_entity
@@ -24,16 +24,18 @@ class CareersController < ApplicationController
     
       # PATCH/PUT /books/1
       def update
-        if Career.update(student_params)
+        areer = Career.find(params[:id])
+        if career.update(student_params)
           render json: career
         else
-          render json: Career.errors, status: :unprocessable_entity
+          render json: career.errors, status: :unprocessable_entity
         end
       end
     
       # DELETE /books/1
       def destroy
-        Career.destroy
+        career = Career.find(params[:id])
+        career.destroy
       end
     
       private

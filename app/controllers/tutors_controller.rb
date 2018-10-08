@@ -4,36 +4,35 @@ class TutorsController < ApplicationController
         render json: {status: "SUCCESS" , message: "Loaded tutors", data: tutors},status: :ok
     end
     def show
-
         tutor = Tutor.find(params[:id])
-
         render json: {status: "SUCCESS" , message: "Loaded post", data: tutor},status: :ok
 
         
       end
 
       def create
-        tutor = Tutor.new(book_params)
-    
-        if Tutor.save
+        tutor = Tutor.new(tutor_params)
+        if tutor.save
           render json: tutor, status: :created, location: tutor
         else
-          render json: Tutor.errors, status: :unprocessable_entity
+          render json: tutor.errors, status: :unprocessable_entity
         end
       end
     
       # PATCH/PUT /books/1
       def update
-        if Tutor.update(student_params)
+        tutor = Tutor.find(params[:id])
+        if tutor.update(tutor_params)
           render json: tutor
         else
-          render json: Tutor.errors, status: :unprocessable_entity
+          render json: tutor.errors, status: :unprocessable_entity
         end
       end
     
-      # DELETE /books/1
+      # DELETE /tutors/1
       def destroy
-        Tutor.destroy
+        tutor = Tutor.find(params[:id])
+        tutor.destroy
       end
     
       private

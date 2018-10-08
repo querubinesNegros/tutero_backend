@@ -1,11 +1,14 @@
 class ImagesController < ApplicationController
     def index
-        images = Image.order('created_at DESC');
+      #  print("*************")
+      #  print( Filep.where(id: params[:filep_id]).first.filepable )
+        images = Filep.where(id: params[:filep_id]).first.filepable
+
         render json: {status: "SUCCESS" , message: "Loaded images", data: images},status: :ok
     end
     def show
 
-        image = Image.find(params[:id]).images
+        image = Image.find(params[:id]) 
 
         render json: {status: "SUCCESS" , message: "Loaded image", data: image},status: :ok
 
@@ -23,7 +26,9 @@ class ImagesController < ApplicationController
     
       # PATCH/PUT /books/1
       def update
-        if Image.update(image_params)
+        image = Image.new(image_params)
+    
+        if image.update(image_params)
           render json: image
         else
           render json: Image.errors, status: :unprocessable_entity
@@ -32,7 +37,9 @@ class ImagesController < ApplicationController
     
       # DELETE /books/1
       def destroy
-        Image.destroy
+        image = Image.new(image_params)
+    
+        image.destroy
       end
     
       private

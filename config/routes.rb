@@ -3,17 +3,28 @@ Rails.application.routes.draw do
   resources :students do
     resources :users
   end
-
-  
+  resources :admins do
+    resources :users
+  end
+  resources :tutors do
+    resources :users
+  end
   resources :users
-  resources :admins
-  resources :tutors
-  resources :careers
-  resources :posts
-  resources :pdfs
-  resources :images
-  resources :fileps
-  resources :class_posts
+  resources :careers  
+  resources :posts do
+    resources :fileps do
+      resources :images
+      resources :pdfs
+    end    
+  end
+  
+ # resources :images do
+ #   resources :filpes
+ # end
+  resources :class_posts do
+    resources :posts
+  end
+
   resources :schedules
   resources :topics
   resources :tutorings

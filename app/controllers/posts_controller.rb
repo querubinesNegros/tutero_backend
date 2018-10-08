@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     end
     def show
 
-        post = Post.find(params[:id]).posts
+        post = Post.find(params[:id])
 
         render json: {status: "SUCCESS" , message: "Loaded post", data: post},status: :ok
 
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
       def create
         post = Post.new(post_params)
     
-        if Post.save
+        if post.save
           render json: post, status: :created, location: post
         else
           render json: Post.errors, status: :unprocessable_entity
@@ -24,7 +24,8 @@ class PostsController < ApplicationController
     
       # PATCH/PUT /books/1
       def update
-        if Post.update(post_params)
+        post = Post.new(post_params)
+        if post.update(post_params)
           render json: post
         else
           render json: Post.errors, status: :unprocessable_entity
@@ -33,7 +34,8 @@ class PostsController < ApplicationController
     
       # DELETE /books/1
       def destroy
-        Post.destroy
+        post = Post.new(post_params)
+        post.destroy
       end
     
       private

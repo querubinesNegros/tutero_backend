@@ -15,16 +15,17 @@ class TutoringsController < ApplicationController
       def create
         tutoring = Tutoring.new(tutoring_params)
     
-        if Tutoring.save
+        if tutoring.save
           render json: tutoring, status: :created, location: tutoring
         else
-          render json: Tutoring.errors, status: :unprocessable_entity
+          render json: tutoring.errors, status: :unprocessable_entity
         end
       end
     
       # PATCH/PUT /books/1
       def update
-        if Tutoring.update(tutoring_params)
+        tutoring = Tutoring.find(params[:id])
+        if tutoring.update(tutoring_params)
           render json: tutoring
         else
           render json: Tutoring.errors, status: :unprocessable_entity
@@ -33,7 +34,8 @@ class TutoringsController < ApplicationController
     
       # DELETE /books/1
       def destroy
-        Tutoring.destroy
+        tutoring = Tutoring.find(params[:id])
+        tutoring.destroy
       end
     
       private
@@ -44,6 +46,6 @@ class TutoringsController < ApplicationController
     
         # Only allow a trusted parameter "white list" through.
         def tutoring_params
-          params.require(:tutoring).permit(:ammountStudents)
+          params.require(:tutoring).permit()
         end
 end

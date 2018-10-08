@@ -13,9 +13,9 @@ class SchedulesController < ApplicationController
       end
 
       def create
-        schedule = Schedule.new(book_params)
+        schedule = Schedule.new(schedule_params)
     
-        if Schedule.save
+        if schedule.save
           render json: schedule, status: :created, location: schedule
         else
           render json: Schedule.errors, status: :unprocessable_entity
@@ -24,7 +24,8 @@ class SchedulesController < ApplicationController
     
       # PATCH/PUT /books/1
       def update
-        if Schedule.update(schedule_params)
+        schedule = Schedule.find(params[:id])
+        if schedule.update(schedule_params)
           render json: schedule
         else
           render json: Schedule.errors, status: :unprocessable_entity
@@ -32,13 +33,14 @@ class SchedulesController < ApplicationController
       end
     
       # DELETE /books/1
-      def destroy
-        Schedule.destroy
+      def 
+        schedule = Schedule.find(params[:id])
+        schedule.destroy
       end
     
       private
         # Use callbacks to share common setup or constraints between actions.
-        def set_tutor
+        def set_schedule
           schedule = Schedule.find(params[:id])
         end
     

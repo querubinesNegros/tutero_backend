@@ -15,7 +15,7 @@ class ClassPostsController < ApplicationController
       def create
         class_post = ClassPost.new(class_post_params)
     
-        if ClassPost.save
+        if class_post.save
           render json: class_post, status: :created, location: class_post
         else
           render json: ClassPost.errors, status: :unprocessable_entity
@@ -24,7 +24,7 @@ class ClassPostsController < ApplicationController
     
       # PATCH/PUT /books/1
       def update
-        if ClassPost.update(class_post_params)
+        if class_post.update(class_post_params)
           render json: class_post
         else
           render json: ClassPost.errors, status: :unprocessable_entity
@@ -33,6 +33,7 @@ class ClassPostsController < ApplicationController
     
       # DELETE /books/1
       def destroy
+        class_post = ClassPost.find(params[:id])
         ClassPost.destroy
       end
     

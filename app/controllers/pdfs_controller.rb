@@ -1,6 +1,8 @@
 class PdfsController < ApplicationController
     def index
-        pdfs = Pdf.order('created_at DESC');
+        pdfs = Filep.where(id: params[:filep_id]).first.filepable
+
+        #pdfs = Pdf.order('created_at DESC');
         render json: {status: "SUCCESS" , message: "Loaded pdfs", data: pdfs},status: :ok
     end
     def show
@@ -15,7 +17,7 @@ class PdfsController < ApplicationController
       def create
         pdf = Pdf.new(pdf_params)
     
-        if Pdf.save
+        if pdf.save
           render json: pdf, status: :created, location: pdf
         else
           render json: Pdf.errors, status: :unprocessable_entity
@@ -24,7 +26,7 @@ class PdfsController < ApplicationController
     
       # PATCH/PUT /books/1
       def update
-        if Pdf.update(pdf_params)
+        if pdf.update(pdf_params)
           render json: pdf
         else
           render json: Pdf.errors, status: :unprocessable_entity
@@ -33,7 +35,8 @@ class PdfsController < ApplicationController
     
       # DELETE /books/1
       def destroy
-        Pdf.destroy
+        pdf = Pdf.find(params[:id])
+        pdf.destroy
       end
     
       private

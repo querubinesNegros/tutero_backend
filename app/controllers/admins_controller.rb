@@ -13,7 +13,7 @@ class AdminsController < ApplicationController
       end
 
       def create
-        admin = Admin.new(book_params)
+        admin = Admin.new(admin_params)
     
         if admin.save
           render json: admin, status: :created, location: admin
@@ -24,6 +24,7 @@ class AdminsController < ApplicationController
     
       # PATCH/PUT /books/1
       def update
+        admin = Student.find(params[:id])
         if admin.update(admin_params)
           render json: admin
         else
@@ -33,6 +34,7 @@ class AdminsController < ApplicationController
     
       # DELETE /books/1
       def destroy
+        admin = Student.find(params[:id])
         admin.destroy
       end
     

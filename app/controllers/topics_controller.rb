@@ -15,7 +15,7 @@ class TopicsController < ApplicationController
       def create
         topic = Topic.new(topic_params)
     
-        if Topic.save
+        if topic.save
           render json: topic, status: :created, location: topic
         else
           render json: Topic.errors, status: :unprocessable_entity
@@ -24,7 +24,8 @@ class TopicsController < ApplicationController
     
       # PATCH/PUT /books/1
       def update
-        if Topic.update(topic_params)
+        topic = topic.new(topic_params)
+        if topic.update(topic_params)
           render json: topic
         else
           render json: Topic.errors, status: :unprocessable_entity
@@ -33,7 +34,8 @@ class TopicsController < ApplicationController
     
       # DELETE /books/1
       def destroy
-        Topic.destroy
+        topic = topic.new(topic_params)
+        topic.destroy
       end
     
       private
@@ -44,7 +46,7 @@ class TopicsController < ApplicationController
     
         # Only allow a trusted parameter "white list" through.
         def topic_params
-          params.require(:topic).permit(:ammountStudents)
+          params.require(:topic).permit()
         end
 
 
