@@ -1,33 +1,144 @@
+# == Route Map
+#
+#                    Prefix Verb   URI Pattern                                                                              Controller#Action
+#               filep_image GET    /fileps/:filep_id/image(.:format)                                                        images#show
+#                           PATCH  /fileps/:filep_id/image(.:format)                                                        images#update
+#                           PUT    /fileps/:filep_id/image(.:format)                                                        images#update
+#                           DELETE /fileps/:filep_id/image(.:format)                                                        images#destroy
+#                           POST   /fileps/:filep_id/image(.:format)                                                        images#create
+#                 filep_pdf GET    /fileps/:filep_id/pdf(.:format)                                                          pdfs#show
+#                           PATCH  /fileps/:filep_id/pdf(.:format)                                                          pdfs#update
+#                           PUT    /fileps/:filep_id/pdf(.:format)                                                          pdfs#update
+#                           DELETE /fileps/:filep_id/pdf(.:format)                                                          pdfs#destroy
+#                           POST   /fileps/:filep_id/pdf(.:format)                                                          pdfs#create
+#               post_fileps GET    /posts/:post_id/fileps(.:format)                                                         fileps#index
+#                           POST   /posts/:post_id/fileps(.:format)                                                         fileps#create
+#                     filep GET    /fileps/:id(.:format)                                                                    fileps#show
+#                           PATCH  /fileps/:id(.:format)                                                                    fileps#update
+#                           PUT    /fileps/:id(.:format)                                                                    fileps#update
+#                           DELETE /fileps/:id(.:format)                                                                    fileps#destroy
+#          user_admin_posts GET    /users/:user_id/admin/posts(.:format)                                                    posts#index
+#                           POST   /users/:user_id/admin/posts(.:format)                                                    posts#create
+#                      post GET    /posts/:id(.:format)                                                                     posts#show
+#                           PATCH  /posts/:id(.:format)                                                                     posts#update
+#                           PUT    /posts/:id(.:format)                                                                     posts#update
+#                           DELETE /posts/:id(.:format)                                                                     posts#destroy
+#                user_admin GET    /users/:user_id/admin(.:format)                                                          admins#show
+#                           PATCH  /users/:user_id/admin(.:format)                                                          admins#update
+#                           PUT    /users/:user_id/admin(.:format)                                                          admins#update
+#                           DELETE /users/:user_id/admin(.:format)                                                          admins#destroy
+#                           POST   /users/:user_id/admin(.:format)                                                          admins#create
+#    user_student_schedules GET    /users/:user_id/student/schedules(.:format)                                              schedules#index
+#                           POST   /users/:user_id/student/schedules(.:format)                                              schedules#create
+#                  schedule GET    /schedules/:id(.:format)                                                                 schedules#show
+#                           PATCH  /schedules/:id(.:format)                                                                 schedules#update
+#                           PUT    /schedules/:id(.:format)                                                                 schedules#update
+#                           DELETE /schedules/:id(.:format)                                                                 schedules#destroy
+#    user_student_tutorings GET    /users/:user_id/student/tutorings(.:format)                                              tutorings#index
+#                           POST   /users/:user_id/student/tutorings(.:format)                                              tutorings#create
+#                  tutoring GET    /tutorings/:id(.:format)                                                                 tutorings#show
+#                           PATCH  /tutorings/:id(.:format)                                                                 tutorings#update
+#                           PUT    /tutorings/:id(.:format)                                                                 tutorings#update
+#                           DELETE /tutorings/:id(.:format)                                                                 tutorings#destroy
+#              user_student GET    /users/:user_id/student(.:format)                                                        students#show
+#                           PATCH  /users/:user_id/student(.:format)                                                        students#update
+#                           PUT    /users/:user_id/student(.:format)                                                        students#update
+#                           DELETE /users/:user_id/student(.:format)                                                        students#destroy
+#                           POST   /users/:user_id/student(.:format)                                                        students#create
+#      user_tutor_schedules GET    /users/:user_id/tutor/schedules(.:format)                                                schedules#index
+#                           POST   /users/:user_id/tutor/schedules(.:format)                                                schedules#create
+#                           GET    /schedules/:id(.:format)                                                                 schedules#show
+#                           PATCH  /schedules/:id(.:format)                                                                 schedules#update
+#                           PUT    /schedules/:id(.:format)                                                                 schedules#update
+#                           DELETE /schedules/:id(.:format)                                                                 schedules#destroy
+#      user_tutor_tutorings GET    /users/:user_id/tutor/tutorings(.:format)                                                tutorings#index
+#                           POST   /users/:user_id/tutor/tutorings(.:format)                                                tutorings#create
+#                           GET    /tutorings/:id(.:format)                                                                 tutorings#show
+#                           PATCH  /tutorings/:id(.:format)                                                                 tutorings#update
+#                           PUT    /tutorings/:id(.:format)                                                                 tutorings#update
+#                           DELETE /tutorings/:id(.:format)                                                                 tutorings#destroy
+#                user_tutor GET    /users/:user_id/tutor(.:format)                                                          tutors#show
+#                           PATCH  /users/:user_id/tutor(.:format)                                                          tutors#update
+#                           PUT    /users/:user_id/tutor(.:format)                                                          tutors#update
+#                           DELETE /users/:user_id/tutor(.:format)                                                          tutors#destroy
+#                           POST   /users/:user_id/tutor(.:format)                                                          tutors#create
+#                     users GET    /users(.:format)                                                                         users#index
+#                           POST   /users(.:format)                                                                         users#create
+#                      user GET    /users/:id(.:format)                                                                     users#show
+#                           PATCH  /users/:id(.:format)                                                                     users#update
+#                           PUT    /users/:id(.:format)                                                                     users#update
+#                           DELETE /users/:id(.:format)                                                                     users#destroy
+#                  students GET    /students(.:format)                                                                      students#index
+#                           POST   /students(.:format)                                                                      students#create
+#                   student GET    /students/:id(.:format)                                                                  students#show
+#                           PATCH  /students/:id(.:format)                                                                  students#update
+#                           PUT    /students/:id(.:format)                                                                  students#update
+#                           DELETE /students/:id(.:format)                                                                  students#destroy
+#                    tutors GET    /tutors(.:format)                                                                        tutors#index
+#                           POST   /tutors(.:format)                                                                        tutors#create
+#                     tutor GET    /tutors/:id(.:format)                                                                    tutors#show
+#                           PATCH  /tutors/:id(.:format)                                                                    tutors#update
+#                           PUT    /tutors/:id(.:format)                                                                    tutors#update
+#                           DELETE /tutors/:id(.:format)                                                                    tutors#destroy
+#                    admins GET    /admins(.:format)                                                                        admins#index
+#                           POST   /admins(.:format)                                                                        admins#create
+#                     admin GET    /admins/:id(.:format)                                                                    admins#show
+#                           PATCH  /admins/:id(.:format)                                                                    admins#update
+#                           PUT    /admins/:id(.:format)                                                                    admins#update
+#                           DELETE /admins/:id(.:format)                                                                    admins#destroy
+#                   careers GET    /careers(.:format)                                                                       careers#index
+#                           POST   /careers(.:format)                                                                       careers#create
+#                    career GET    /careers/:id(.:format)                                                                   careers#show
+#                           PATCH  /careers/:id(.:format)                                                                   careers#update
+#                           PUT    /careers/:id(.:format)                                                                   careers#update
+#                           DELETE /careers/:id(.:format)                                                                   careers#destroy
+#                    topics GET    /topics(.:format)                                                                        topics#index
+#                           POST   /topics(.:format)                                                                        topics#create
+#                     topic GET    /topics/:id(.:format)                                                                    topics#show
+#                           PATCH  /topics/:id(.:format)                                                                    topics#update
+#                           PUT    /topics/:id(.:format)                                                                    topics#update
+#                           DELETE /topics/:id(.:format)                                                                    topics#destroy
+#        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+# rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+#        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+# update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+#      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
+
+#
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :students do
-    resources :users
-  end
-  resources :admins do
-    resources :users
-  end
-  resources :tutors do
-    resources :users
-  end
-  resources :users
-  resources :careers  
-  resources :posts do
-    resources :fileps do
-      resources :images
-      resources :pdfs
-    end    
-  end
-  
- # resources :images do
- #   resources :filpes
- # end
-  resources :class_posts do
-    resources :posts
-  end
+  #=begin
 
-  resources :schedules
+  resources :users do
+    resource :admin do
+      resources :posts, shallow: true do
+        resources :fileps, shallow: true do
+          resource :image
+          resource :pdf
+        end
+      end
+    end
+    resource :student, shallow: true do
+      resources :schedules
+      resources :tutorings
+    end
+    resource :tutor, shallow: true do
+      resources :schedules
+      resources :tutorings
+    end
+  end
+  resources :students
+  resources :tutors
+  resources :admins
+  resources :careers
   resources :topics
-  resources :tutorings
-  
-  
+  resources :schedules
+
+  #resources :class_posts do
+  #   resources :posts
+  # end
+  # resources :schedules
+  # resources :tutorings
+  #=end
+
 end
