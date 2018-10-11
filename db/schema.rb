@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_30_165941) do
+ActiveRecord::Schema.define(version: 2018_10_11_142326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,8 +64,7 @@ ActiveRecord::Schema.define(version: 2018_09_30_165941) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_posts_on_admin_id"
-    t.index ["class_po
-    st_id"], name: "index_posts_on_class_post_id"
+    t.index ["class_post_id"], name: "index_posts_on_class_post_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -130,7 +129,7 @@ ActiveRecord::Schema.define(version: 2018_09_30_165941) do
 
   create_table "users", force: :cascade do |t|
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.string "cellphone"
     t.bigint "career_id"
     t.string "userable_type"

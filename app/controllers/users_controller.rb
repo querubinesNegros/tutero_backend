@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, only: [:show]
+  before_action :set_user, only: [:show]
+
   def index
     users = User.order("created_at DESC")
     render json: {status: "SUCCESS", message: "Loaded users", data: users}, status: :ok
@@ -45,6 +48,9 @@ class UsersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def user_params
-    params.require(:user).permit(:name, :lastname, :password)
+    params.require(:user).permit(:name, :lastname,:email, :password, :password_confirmation)
+  end
+  def current
+    render json: current_user
   end
 end

@@ -16,9 +16,11 @@
 #
 
 class User < ApplicationRecord
-  belongs_to :career
+  belongs_to :career, optional: :true
   belongs_to :userable, polymorphic: true, optional: true
   has_many :tutorings
+  has_secure_password
+
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PASSWORD_REGEX = /^(?=.*\d)(?=.*([a-z]|[A-Z]))([\x20-\x7E]){8,40}$/i

@@ -26,6 +26,18 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'faker', '~> 1.9', '>= 1.9.1'
+
+# Esta gema nos permite habilita "has_secure_password" en Active Record
+gem 'bcrypt', '~> 3.1.7'
+
+# Usamos Rack CORS para habiliar Cross-Origin Resource Sharing (CORS)
+gem 'rack-cors'
+
+# Usamos knock para autenticar con el JWT
+gem 'knock'
+
+# Usamos Active Model Serializers para definir las respuestas del API en JSON
+gem 'active_model_serializers', '~> 0.10.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
