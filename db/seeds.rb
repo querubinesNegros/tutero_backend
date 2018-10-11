@@ -8,6 +8,18 @@
 
 #users admins
 #user tutor  
+days = ['lunes', 'martes', 'miercoles' , 'jueves', 'viernes', 'sabado' ]
+
+for i  in 0..(days.count)
+  for j in 7..22
+    #print("Day: " + days[i] + " hour: " + j.to_s)
+
+    sh = Schedule.new(name: days[i], hour: j)
+    sh.save
+    
+  end
+end
+
 10.times do
   #Creamos una carrera
   care =  Career.new( name: Faker::Educator.course)
@@ -20,7 +32,7 @@
     name: Faker::Name.first_name ,
     lastname: Faker::Name.last_name,
     email: Faker::Internet.free_email,
-    password: Faker::Internet.password,
+    password: "admin12345678",
     cellphone: Faker::PhoneNumber.cell_phone,
   ) 
   userx.userable= admin #Se asocia el admin con el usuario
@@ -56,7 +68,7 @@
     name: Faker::Name.first_name ,
     lastname: Faker::Name.last_name,
     email: Faker::Internet.free_email,
-    password: Faker::Internet.password,
+    password: "tutor12345678",
     cellphone: Faker::PhoneNumber.cell_phone,
   ) 
   usertutor.userable= tutor #Se asocia el admin con el usuario
@@ -81,7 +93,7 @@
       name: Faker::Name.first_name ,
       lastname: Faker::Name.last_name,
       email: Faker::Internet.free_email,
-      password: Faker::Internet.password,
+      password: "student123456789",
       cellphone: Faker::PhoneNumber.cell_phone,
     ) 
     userstudent.userable= student
