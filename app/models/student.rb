@@ -23,4 +23,11 @@ class Student < ApplicationRecord
                                                      greater_than_or_equal_to: 1, less_than_or_equal_to: 6}
   validates :pbm, presence: true, numericality: {only_integer: true,
                                                  greater_than_or_equal_to: 1, less_than_or_equal_to: 100}
+  
+  default_scope { joins(:user) }
+
+  def self.pbmStatistics
+    group(:pbm).count
+  end
+
 end

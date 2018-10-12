@@ -27,4 +27,15 @@ class Tutoring < ApplicationRecord
   validates :topic_id, presence: true
   validates :schedule_id, presence: true
   validates :student_id, presence: true
+
+  default_scope { joins(:topic) }
+
+  def self.findNotes(words)
+    where("noteStudent LIKE ? OR noteTutor LIKE ?", words, words)
+  end
+
+  def self.topicStatistics
+    group(:topic).count
+  end
+
 end
