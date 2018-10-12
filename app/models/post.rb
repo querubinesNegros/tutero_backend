@@ -18,4 +18,9 @@ class Post < ApplicationRecord
   has_many :fileps
 
   validates :class_post_id, :admin_id, :name, :description, presence: true
+
+  def self.findByType(publicationType)
+    joins(:class_post).where("class_post.name = ?", publicationType)
+  end
+
 end

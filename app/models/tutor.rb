@@ -15,4 +15,23 @@ class Tutor < ApplicationRecord
   has_many :tutorings, through: :students
   # validates :ammountStudents: presence: true, numericality: { only_integer: true }
 
+  default_scope { joins(:user) }
+  
+  def self.horarios(id)
+    joins(:schedules).where("tutor_id = ?", id).pluck(:name, :hour)
+  end
+
+  def self.tutorings(id)
+    joins(:tutorings).where("tutor_id = ?", id)
+  end
+
+  def self.totalHoursTutorings(id, dateAfter)
+    joins(:tutorings).where("tutor_id = ? AND date > ?", id, dateAfter).sum("duration")
+  end
+
+  #def self.findTutorToStudent(day, hour, studentCarrer)
+  #  joins(:schedules).where("schedule.name = ? AND ", day).pluck(:name, :hour)
+  #end
+
 end
+
