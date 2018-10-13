@@ -21,7 +21,8 @@ class UsersController < ApplicationController
         end
         render json: {status: "SUCCESS", message: "Loaded students of tutors", data: userS}, status: :ok
       elsif userm.userable_type == "Student"
-        render json: {status: "SUCCESS", message: "Loaded users", data: current_user}, status: :ok
+        tutor = Tutor.select("tutors.id, name").joins(:user).first
+        render json: {status: "SUCCESS", message: "Loaded users", data: tutor}, status: :ok
       end
     else
       render json: {status: "SUCCESS", message: "Loaded users", data: current_user}, status: :ok

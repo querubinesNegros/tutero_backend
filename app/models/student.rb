@@ -32,6 +32,7 @@ class Student < ApplicationRecord
   def self.studentsOfTutor(id_t)
     select("name").where(tutor_id: id_t).joins(:user)
   end
+  
   def self.getMyTutor(ids)
     where(id = ids ).joins(:tutor)
   end
