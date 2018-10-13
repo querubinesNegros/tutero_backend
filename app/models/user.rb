@@ -33,4 +33,14 @@ class User < ApplicationRecord
   validates :lastname, presence: true, length: {minimum: 2, maximum: 50}
   #validates :userable, presence: true
 
+  #consultas
+  def self.getUsersByCareer(career_id)
+    User.select("users.id, email, name, lastname").where(career_id: career_id)
+  end
+
+  def self.getCareerByID(id_c)
+    Career.select("id, name").where(id: id_c).first
+  end
+  
+  
 end

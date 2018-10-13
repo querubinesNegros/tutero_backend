@@ -2,11 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate_user, only: [:show]
   before_action :set_user, only: [:show]
   def current
-    print("sada\n")
-
-    print(params)
-     print("\nsada\n")
-   
     render json: current_user
   end
   
@@ -17,11 +12,10 @@ class UsersController < ApplicationController
     userS = []
     if userm   
       if userm.userable_type =="Admin"
-        userCareer = User.where(userable_type: "Student" , career_id: userm.career_id)
+        userCareer = User.getUsersByCareer(userm.career_id)
         render json: {status: "SUCCESS", message: "Loaded users", data: userCareer}, status: :ok
       elsif userm.userable_type =="Tutor"
-        
-         studTutor = Student.where( tutor_id: userm.userable_id)
+         studTutor = Student.studentsOfTutor(userm.userable_id)#Student.where( tutor_id: userm.userable_id)
          studTutor.each do |st|
             userS.push( User.where("userable_type = ? and userable_id = ?","Student" , st.id ).first)
          end
