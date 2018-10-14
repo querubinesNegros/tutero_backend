@@ -30,8 +30,9 @@ class UsersController < ApplicationController
         end
         render json: {status: "SUCCESS", message: "Loaded students of tutors", data: userS}, status: :ok
       elsif userm.userable_type == "Student"
-        tutor = Student.getMyTutor(userm.userable_id) #Tutor.select("tutors.id, name, lastname , cellphone , email").joins(:user).where()
-        render json: {status: "SUCCESS", message: "Loaded TUTOR", data: tutor}, status: :ok
+
+        infoStudent = Student.showInfo(userm.userable_id) #Tutor.select("tutors.id, name, lastname , cellphone , email").joins(:user).where()
+        render json: {status: "SUCCESS", message: "Loaded TUTOR", data: infoStudent}, status: :ok
       end
     else
       render json: {status: "SUCCESS", message: "Loaded  ALL users", data: User.all}, status: :ok
