@@ -25,7 +25,7 @@ class UsersController < ApplicationController
         render json: {status: "SUCCESS", message: "Loaded users", data: tutor}, status: :ok
       end
     else
-      render json: {status: "SUCCESS", message: "Loaded users", data: User.all}, status: :ok
+      render json: {status: "SUCCESS", message: "Loaded  ALL users", data: User.all}, status: :ok
     end
   end
 
