@@ -20,6 +20,8 @@ for i  in 0..(days.count)
   end
 end
 
+
+
 10.times do
   #Creamos una carrera
   care =  Career.new( name: Faker::Educator.course)
@@ -43,7 +45,9 @@ end
   post = Post.new(name: Faker::Educator.campus , addressedTo:"Everyone", description: Faker::Community.quotes )
 
   post.admin = admin
-  post.class_post = ClassPost.first
+  classPost = ClassPost.new(name: Faker::Hipster.word)
+  classPost.save
+  post.class_post = classPost
   post.save
   #El post tiene uno o varios archivos
   for i in 0..rand(3)
@@ -80,7 +84,6 @@ end
   for i in 0..4
     sh = nil
     sh = Schedule.order("RANDOM()").first 
-    print(sh.hour.to_s + "\n")
     tutor.schedules << sh
     
   end

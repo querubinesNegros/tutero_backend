@@ -22,8 +22,14 @@ Rails.application.routes.draw do
   get 'users/current' => 'users#current'
   get 'users/mytutor' => 'users#mytutor'
   post   '/users/create'   => 'users#create'
+  resources :users 
+  
   resources :careers
-  resources :users
+  resources :schedules
+  resources :posts
+
+  
+  
   
 
 =begin
