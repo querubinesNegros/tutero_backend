@@ -33,8 +33,9 @@ class Student < ApplicationRecord
     select("name").where(tutor_id: id_t).joins(:user)
   end
   
-  def self.getMyTutor(ids)
-    where(id = ids ).joins(:tutor)
+  def self.getMyTutor(ids) #ids es el id del estudiante
+    tutorId =  Student.where(id: ids).first.tutor_id
+    Tutor.select("users.id ,email, name, lastname, cellphone").where(id: tutorId ).joins(:user)
   end
 
 

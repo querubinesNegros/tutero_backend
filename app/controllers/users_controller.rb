@@ -6,9 +6,18 @@ class UsersController < ApplicationController
     render json: current_user
   end
 
+  def mytutor
+    userm = current_user
+    if userm.userable_type == "Student"
+      tutor = Student.getMyTutor(userm.userable_id) #Tutor.select("tutors.id, name, lastname , cellphone , email").joins(:user).where()
+      render json: {status: "SUCCESS", message: "Loaded TUTOR", data: tutor}, status: :ok
+    else
+      render json: {status: "student not found", message: "you are not a student", data: nil}, status: :not_found
+    end
+  end
+
   def index
     userm = current_user
-
     userS = []
     if userm
       if userm.userable_type == "Admin"
@@ -21,8 +30,8 @@ class UsersController < ApplicationController
         end
         render json: {status: "SUCCESS", message: "Loaded students of tutors", data: userS}, status: :ok
       elsif userm.userable_type == "Student"
-        tutor = Tutor.select("tutors.id, name").joins(:user).first
-        render json: {status: "SUCCESS", message: "Loaded users", data: tutor}, status: :ok
+        tutor = Student.getMyTutor(userm.userable_id) #Tutor.select("tutors.id, name, lastname , cellphone , email").joins(:user).where()
+        render json: {status: "SUCCESS", message: "Loaded TUTOR", data: tutor}, status: :ok
       end
     else
       render json: {status: "SUCCESS", message: "Loaded  ALL users", data: User.all}, status: :ok
