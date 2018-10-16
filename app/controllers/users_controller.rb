@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     end
   end
   def getpages
-    pages = User.count/20 + 1
+    pages = (User.count.to_f/20).to_f.ceil
     render json: {status: "SUCCESS", message: "Loaded pages users", data: pages}, status: :ok
 
   end
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     
     if userm
       if userm.userable_type == "Admin"
-        userCareer = User.getUsersByCareer(userm.career_id).paginate(:page => params[:page], :per_page => 20)
+        userCareer = User.getUsersByCareer(userm.career_id).paginate(:page => params[:page], :per_page => 20).order(:id)
         render json: {status: "SUCCESS", message: "Loaded users", data: userCareer}, status: :ok
       elsif userm.userable_type == "Tutor"
         studTutor = Student.studentsOfTutor(userm.userable_id) #Student.where( tutor_id: userm.userable_id)
@@ -61,7 +61,8 @@ class UsersController < ApplicationController
         render json: {status: "SUCCESS", message: "Loaded TUTOR", data: infoStudent}, status: :ok
       end
     else
-      render json: {status: "SUCCESS", message: "Loaded  ALL users", data: User.paginate(:page => params[:page], :per_page => 20)}, status: :ok
+      users = User.paginate(:page => params[:page], :per_page => 20).order(:id)
+      render json: {status: "SUCCESS", message: "Loaded  ALL users", data: users}, status: :ok
     end
   end
 
