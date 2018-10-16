@@ -15,6 +15,17 @@ class UsersController < ApplicationController
     render json: {status: "SUCCESS", message: "Loaded TUTOR", data: type}, status: :ok
 
   end
+  def typeuserp
+
+    email = params[:email]
+    print("*********")
+    print(params)
+    type = User.getType(email)
+    render json: {status: "SUCCESS", message: "Loaded TUTOR", data: type}, status: :ok
+
+
+    print(email)
+  end
 
   def mytutor
     userm = current_user

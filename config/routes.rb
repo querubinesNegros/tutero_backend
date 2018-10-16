@@ -103,8 +103,10 @@ Rails.application.routes.draw do
   get 'users/current' => 'users#current'
   get 'users/mytutor' => 'users#mytutor'
   post   '/users/create'   => 'users#create'
-  get '/users/type/:em/:end' =>  'users#typeuser#' 
-    #resources :users 
+  get '/users/type/:em/:end' =>  'users#typeuser' 
+  post '/users/type/' =>  'users#typeuserp' 
+  
+  #resources :users 
   
   resources :careers
   resources :schedules
