@@ -37,7 +37,11 @@ class Student < ApplicationRecord
     tutorId =  Student.where(id: ids).first.tutor_id
     Tutor.select("users.id ,email, name, lastname, cellphone").where(id: tutorId ).joins(:user)
   end
-  def self.showInfo(ids) #id studan
-    select("users.id, name , lastname, email, cellphone, pbm, age, stratus ").where(id: ids).joins(:user)
+  def self.showInfo(ids) #student
+    select("users.id, users.userable_id , name, lastname, email, cellphone, pbm, age, stratus ").where(id: ids).joins(:user)
+  end
+  def self.getTutoringsById(id_userable)
+    Tutoring.where(student_id: id_userable)
   end
 end
+#realizar bien students of tutors
