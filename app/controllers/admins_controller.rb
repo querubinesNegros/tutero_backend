@@ -32,7 +32,7 @@ class AdminsController < ApplicationController
 
   # PATCH/PUT /books/1
   def update
-    admin = Student.find(params[:id])
+    admin = Admin.find(params[:id])
     if admin.update(admin_params)
       render json: admin
     else
@@ -42,7 +42,7 @@ class AdminsController < ApplicationController
 
   # DELETE /books/1
   def destroy
-    admin = Student.find(params[:id])
+    admin = Admin.find(params[:id])
     admin.destroy
   end
 
@@ -50,7 +50,7 @@ class AdminsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_admin
-    admin = Student.find(params[:id])
+    admin = Admin.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
