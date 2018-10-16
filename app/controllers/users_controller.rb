@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     
     if userm
       if userm.userable_type == "Admin"
-        userCareer = User.getUsersByCareer(userm.career_id)
+        userCareer = User.getUsersByCareer(userm.career_id).paginate(:page => params[:page], :per_page => 20)
         render json: {status: "SUCCESS", message: "Loaded users", data: userCareer}, status: :ok
       elsif userm.userable_type == "Tutor"
         studTutor = Student.studentsOfTutor(userm.userable_id) #Student.where( tutor_id: userm.userable_id)
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
         render json: {status: "SUCCESS", message: "Loaded TUTOR", data: infoStudent}, status: :ok
       end
     else
-      render json: {status: "SUCCESS", message: "Loaded  ALL users", data: User.all}, status: :ok
+      render json: {status: "SUCCESS", message: "Loaded  ALL users", data: User.paginate(:page => params[:page], :per_page => 20)}, status: :ok
     end
   end
 
@@ -69,23 +69,24 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
-    case user_params[:userable_type] 
-    when "Admin"
-      adm = Admin.new()
-      adm.save 
-      user.userable_id = adm.id 
-    when "Student"
-      student = Student.new(student_params)
-      student.save
-      user.userable_id = student.id
-      
-    end
    
     if user.save
-      render json: user, status: :created, location: user
+      case user_params[:userable_type] 
+      when "Admin"
+        adm = Admin.new()
+        adm.save 
+        user.userable_id = adm.id 
+      when "Student"
+        student = Student.new(student_params)
+        student.save
+        user.userable_id = student.id
+      end
+      user.save
+      render json: user, status: :created, location: user.password  
     else
       render json: user.errors, status: :unprocessable_entity
     end
+    
   end
 
   # PATCH/PUT /books/1

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
-    posts = Post.order("created_at DESC")
-    render json: {data: posts}, status: :ok
+    posts = Post.order("created_at DESC").paginate(:page => params[:page], :per_page => 5)
+    render json: {data: posts}, status: :ok 
   end
 
   def show
