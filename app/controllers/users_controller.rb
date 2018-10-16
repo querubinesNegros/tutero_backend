@@ -44,7 +44,6 @@ class UsersController < ApplicationController
   def index
     userm = current_user
     userS = []
-    
     if userm
       if userm.userable_type == "Admin"
         userCareer = User.getUsersByCareer(userm.career_id).paginate(:page => params[:page], :per_page => 20).order(:id)
