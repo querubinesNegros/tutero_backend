@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /books/1
   def update
     user = User.find(params[:id])
-    if user.update(user_params)
+    if user.update(params_update)
       render json: user
     else
       render json: user.errors, status: :unprocessable_entity
@@ -99,7 +99,9 @@ class UsersController < ApplicationController
   def set_user
     user = User.find(params[:id])
   end
-
+  def params_update
+    params.require(:user).permit(:name, :lastname, :password, :password_confirmation, :cellphone)
+  end
   # Only allow a trusted parameter "white list" through.
   def user_params
     params.require(:user).permit(:name, :lastname, :email, :password, :password_confirmation)

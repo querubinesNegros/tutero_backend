@@ -30,7 +30,7 @@ class Tutor < ApplicationRecord
   end
   
   def self.getTutorings(userable_id)
-    Student.where(tutor_id: userable_id).joins(:tutorings).select_all
+    Student.where(tutor_id: userable_id)
   end
   #def self.findTutorToStudent(day, hour, studentCarrer)
   #  joins(:schedules).where("schedule.name = ? AND ", day).pluck(:name, :hour)

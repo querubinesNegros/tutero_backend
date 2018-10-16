@@ -5,6 +5,8 @@
 #             users_current GET    /users/current(.:format)                                                                 users#current
 #             users_mytutor GET    /users/mytutor(.:format)                                                                 users#mytutor
 #              users_create POST   /users/create(.:format)                                                                  users#create
+#                           GET    /users/type/:em/:end(.:format)                                                           users#typeuser
+#                users_type POST   /users/type(.:format)                                                                    users#typeuserp
 #                   careers GET    /careers(.:format)                                                                       careers#index
 #                           POST   /careers(.:format)                                                                       careers#create
 #                    career GET    /careers/:id(.:format)                                                                   careers#show
@@ -90,6 +92,18 @@
 #                           PATCH  /users/:id(.:format)                                                                     users#update
 #                           PUT    /users/:id(.:format)                                                                     users#update
 #                           DELETE /users/:id(.:format)                                                                     users#destroy
+#          class_post_posts GET    /class_posts/:class_post_id/posts(.:format)                                              posts#index
+#                           POST   /class_posts/:class_post_id/posts(.:format)                                              posts#create
+#           class_post_post GET    /class_posts/:class_post_id/posts/:id(.:format)                                          posts#show
+#                           PATCH  /class_posts/:class_post_id/posts/:id(.:format)                                          posts#update
+#                           PUT    /class_posts/:class_post_id/posts/:id(.:format)                                          posts#update
+#                           DELETE /class_posts/:class_post_id/posts/:id(.:format)                                          posts#destroy
+#               class_posts GET    /class_posts(.:format)                                                                   class_posts#index
+#                           POST   /class_posts(.:format)                                                                   class_posts#create
+#                class_post GET    /class_posts/:id(.:format)                                                               class_posts#show
+#                           PATCH  /class_posts/:id(.:format)                                                               class_posts#update
+#                           PUT    /class_posts/:id(.:format)                                                               class_posts#update
+#                           DELETE /class_posts/:id(.:format)                                                               class_posts#destroy
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
 #        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
@@ -143,9 +157,9 @@ Rails.application.routes.draw do
  # resources :topics
  # resources :schedules
 
-  #resources :class_posts do
-  #   resources :posts
-  # end
+  resources :class_posts do
+     resources :posts
+   end
   # resources :schedules
   # resources :tutorings
 #=end
