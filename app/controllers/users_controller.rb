@@ -36,7 +36,11 @@ class UsersController < ApplicationController
       render json: {status: "student not found", message: "you are not a student", data: nil}, status: :not_found
     end
   end
+  def getpages
+    pages = User.count/30 + 1
+    render json: {status: "SUCCESS", message: "Loaded pages users", data: pages}, status: :ok
 
+  end
   def index
     userm = current_user
     userS = []

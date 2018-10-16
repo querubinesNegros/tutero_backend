@@ -121,7 +121,7 @@ Rails.application.routes.draw do
   post '/users/type/' =>  'users#typeuserp' 
   get '/posts/page/:page' =>  'posts#index' 
   get '/users/page/:page' =>  'users#index' 
-  
+  get '/users/pages' =>  'users#getpages'
   #resources :users 
   
   resources :careers
