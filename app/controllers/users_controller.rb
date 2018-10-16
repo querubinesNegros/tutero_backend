@@ -69,6 +69,11 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
+    if user_params[:userable_type] == "Admin"
+      adm = Admin.new()
+      adm.save 
+      user.userable_id = adm.id
+    end
 
     if user.save
       render json: user, status: :created, location: user
@@ -104,6 +109,6 @@ class UsersController < ApplicationController
   end
   # Only allow a trusted parameter "white list" through.
   def user_params
-    params.require(:user).permit(:name, :lastname, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :lastname, :email, :password, :password_confirmation , :cellphone, :userable_type)
   end
 end
