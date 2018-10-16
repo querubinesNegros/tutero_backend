@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     end
   end
   def getpages
-    pages = User.count/30 + 1
+    pages = User.count/20 + 1
     render json: {status: "SUCCESS", message: "Loaded pages users", data: pages}, status: :ok
 
   end
