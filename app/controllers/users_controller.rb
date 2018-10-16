@@ -5,6 +5,16 @@ class UsersController < ApplicationController
   def current
     render json: current_user
   end
+  def typeuser
+
+    eml = params[:em]
+    ends = params[:end] 
+
+    eml = eml +"."+ ends
+    type = User.getType(eml)
+    render json: {status: "SUCCESS", message: "Loaded TUTOR", data: type}, status: :ok
+
+  end
 
   def mytutor
     userm = current_user

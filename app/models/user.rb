@@ -41,6 +41,9 @@ class User < ApplicationRecord
   def self.getCareerByID(id_c)
     Career.select("id, name").where(id: id_c).first
   end
+  def self.getType(email)
+     User.where(email: email).pluck("userable_type")
+  end
   
   
 end
