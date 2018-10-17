@@ -23,15 +23,28 @@ gem 'puma', '~> 3.11'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+#gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'faker', '~> 1.9', '>= 1.9.1'
+
+# Esta gema nos permite habilita "has_secure_password" en Active Record
+gem 'bcrypt', '~> 3.1.7'
+
+# Usamos Rack CORS para habiliar Cross-Origin Resource Sharing (CORS)
+gem 'rack-cors'
+
+# Usamos knock para autenticar con el JWT
+gem 'knock'
+
+# Usamos Active Model Serializers para definir las respuestas del API en JSON
+gem 'active_model_serializers', '~> 0.10.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'annotate'
 end
 
 group :development do
