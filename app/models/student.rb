@@ -50,4 +50,3 @@ class Student < ApplicationRecord
     Tutoring.where(student_id: id_userable)
   end
 end
-#realizar bien students of tutors

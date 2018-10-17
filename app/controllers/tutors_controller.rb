@@ -4,6 +4,13 @@ class TutorsController < ApplicationController
     render json: {status: "SUCCESS", message: "Loaded tutors", data: tutors}, status: :ok
   end
 
+=begin
+  def index
+    @tutors = Tutor.all
+    render json: @tutors
+  end
+=end
+
   def show
     type = User.find(params[:user_id]).userable_type
     if type == "Tutor"
