@@ -15,14 +15,15 @@ class Tutor < ApplicationRecord
   has_many :tutorings, through: :students
   # validates :ammountStudents: presence: true, numericality: { only_integer: true }
 
-  default_scope { joins(:user) }
+  #default_scope { joins(:user) }
   
   def self.horarios(id)
-    joins(:schedules).where("tutor_id = ?", id).pluck(:name, :hour)
+    joins(:schedules).where("tutor_id = ?", id).pluck('schedules.name', :hour)
   end
 
   def self.tutorings(id)
-    joins(:tutorings).where("tutor_id = ?", id)
+    joins(students: :user, tutorings: :topic).where("students.tutor_id = ?", id)
+      .select('tutorings.*, users.name, users.lastname, topics.name')
   end
 
   def self.totalHoursTutorings(id, dateAfter)
@@ -34,9 +35,13 @@ class Tutor < ApplicationRecord
     #Tutoring.select("type_t , duration, date, score, review" ).joins(:student).where("tutor_id = ?" ,userable_id)
     #Tutor.joins(:tutorings, :students, :user).where("students.tutor_id =  ? ",userable_id).select("score , review , name")
 
+  def self.findByCarrer(studentCarrer)
+    joins(user: :career).where("careers.name LIKE ?", studentCarrer).select('tutors.*')
   end
+
   #def self.findTutorToStudent(day, hour, studentCarrer)
-  #  joins(:schedules).where("schedule.name = ? AND ", day).pluck(:name, :hour)
+  #  joins(:careers, :schedules).where("schedule.name = ? AND schedule.hour = ? AND career.name = ?", 
+  #    day, hour, studentCarrer).select('tutors.*')
   #end
 
 end
