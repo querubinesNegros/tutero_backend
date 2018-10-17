@@ -11,10 +11,10 @@ class Admin < ApplicationRecord
   has_one :user, as: :userable
   has_many :posts
 
-  default_scope { joins(:user) }
+  default_scope { joins(:user).select('*') }
 
-  #def self.postsAfter(publicatitonDate)
-  #  joins(:posts).where("posts.date > ?", publicatitonDate)
-  #end
+  def self.postsAfter(publicatitonDate)
+    joins(:posts).where("posts.created_at > ?", publicatitonDate)
+  end
 
 end

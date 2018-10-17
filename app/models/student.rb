@@ -24,10 +24,15 @@ class Student < ApplicationRecord
   validates :pbm, presence: true, numericality: {only_integer: true,
                                                  greater_than_or_equal_to: 1, less_than_or_equal_to: 100}
   
-  default_scope { joins(:user) }
+  default_scope { joins(:user).select('*') }
 
   def self.pbmStatistics
     group(:pbm).count
   end
+
+  #def self.findNotes(words, id)
+  #  joins(:tutorings).where("(tutorings.noteStudent LIKE ? OR tutorings.noteTutor LIKE ?) AND student_id = ?"
+  #        , words, words, id)
+  #end
 
 end

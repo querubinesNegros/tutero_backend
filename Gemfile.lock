@@ -52,8 +52,6 @@ GEM
       rake (>= 10.4, < 13.0)
     arel (9.0.0)
     bcrypt (3.1.12)
-    bootsnap (1.3.2)
-      msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
     case_transform (0.2)
@@ -91,8 +89,6 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
-    msgpack (1.2.4)
-    msgpack (1.2.4-x64-mingw32)
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
@@ -164,7 +160,6 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   annotate
   bcrypt (~> 3.1.7)
-  bootsnap (>= 1.1.0)
   byebug
   faker (~> 1.9, >= 1.9.1)
   knock
