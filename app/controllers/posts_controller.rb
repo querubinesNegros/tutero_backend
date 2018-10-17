@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
-    posts = Post.order("created_at DESC")
-    render json: {data: posts}, status: :ok
+    posts = Post.order(:id).paginate(:page => params[:page], :per_page => 5)
+    render json: {data: posts}, status: :ok 
   end
 
   def show
@@ -45,6 +45,6 @@ class PostsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def post_params
-    params.require(:post).permit(:name)
+    params.require(:post).permit(:class_post_id, :admin_id , :name, :description , :addressedTo)
   end
 end

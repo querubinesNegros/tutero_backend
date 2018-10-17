@@ -29,6 +29,11 @@ class Tutor < ApplicationRecord
   def self.totalHoursTutorings(id, dateAfter)
     joins(:tutorings).where("tutor_id = ? AND date > ?", id, dateAfter).sum("duration")
   end
+  
+  def self.getTutorings(userable_id)
+    Student.joins(:tutorings, :user).where(tutor_id: userable_id).select("tutorings.id ,score , name, lastname , review, duration, date , schedule_id , topic_id")
+    #Tutoring.select("type_t , duration, date, score, review" ).joins(:student).where("tutor_id = ?" ,userable_id)
+    #Tutor.joins(:tutorings, :students, :user).where("students.tutor_id =  ? ",userable_id).select("score , review , name")
 
   def self.findByCarrer(studentCarrer)
     joins(user: :career).where("careers.name LIKE ?", studentCarrer).select('tutors.*')
