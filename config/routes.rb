@@ -122,6 +122,8 @@ Rails.application.routes.draw do
   get '/posts/page/:page' =>  'posts#index' 
   get '/users/page/:page' =>  'users#index' 
   get '/users/pages' =>  'users#getpages'
+  get '/users/:user_id/tutor/certificado' =>  'tutors#certificado'
+  
   #resources :users 
   
   resources :careers

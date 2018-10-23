@@ -22,10 +22,16 @@ gem 'puma', '~> 3.11'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Reduces boot times through caching; required in config/boot.rb
-#gem 'bootsnap', '>= 1.1.0', require: false
+gem 'will_paginate', '~> 3.1.0'
 
+#to populate the database
 gem 'faker', '~> 1.9', '>= 1.9.1'
+
+#Enables to convert HTML to PDF
+#gem 'wicked_pdf'
+#gem 'wkhtmltopdf-binary'
+
+gem 'prawn'
 
 # Esta gema nos permite habilita "has_secure_password" en Active Record
 gem 'bcrypt', '~> 3.1.7'
@@ -38,6 +44,7 @@ gem 'knock'
 
 # Usamos Active Model Serializers para definir las respuestas del API en JSON
 gem 'active_model_serializers', '~> 0.10.0'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
