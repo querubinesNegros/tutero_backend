@@ -42,13 +42,6 @@ class UsersController < ApplicationController
 
   end
 
-=begin
-  def index
-    @users = User.all
-    render json: @users
-  end
-=end
-
    def index
     userm = current_user
     userS = []
@@ -71,7 +64,7 @@ class UsersController < ApplicationController
       users = User.paginate(:page => params[:page], :per_page => 20).order(:id)
       render json: {status: "SUCCESS", message: "Loaded  ALL users", data: users}, status: :ok
     end
-  end 
+  end
 
   def show
     user = User.find(params[:id])
