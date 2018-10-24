@@ -49,34 +49,33 @@ class UsersController < ApplicationController
   end
 =end
 
-   def index
-    userm = current_user
-    userS = []
-    if userm
-      if userm.userable_type == "Admin"
-        userCareer = User.getUsersByCareer(userm.career_id).paginate(:page => params[:page], :per_page => 20).order(:id)
-        render json: {status: "SUCCESS", message: "Loaded users", data: userCareer}, status: :ok
-      elsif userm.userable_type == "Tutor"
-        studTutor = Student.studentsOfTutor(userm.userable_id) #Student.where( tutor_id: userm.userable_id)
-        studTutor.each do |st|
-          userS.push(User.where("userable_type = ? and userable_id = ?", "Student", st.id).first)
-        end
-        render json: {status: "SUCCESS", message: "Loaded students of tutors", data: userS}, status: :ok
-      elsif userm.userable_type == "Student"
-
-        infoStudent = Student.showInfo(userm.userable_id) #Tutor.select("tutors.id, name, lastname , cellphone , email").joins(:user).where()
-        render json: {status: "SUCCESS", message: "Loaded TUTOR", data: infoStudent}, status: :ok
+def index
+  userm = current_user
+  userS = []
+  if userm
+    if userm.userable_type == "Admin"
+      userCareer = User.getUsersByCareer(userm.career_id).paginate(:page => params[:page], :per_page => 20).order(:id)
+      render json: userCareer
+    elsif userm.userable_type == "Tutor"
+      studTutor = Student.studentsOfTutor(userm.userable_id) #Student.where( tutor_id: userm.userable_id)
+      studTutor.each do |st|
+        userS.push(User.where("userable_type = ? and userable_id = ?", "Student", st.id).first)
       end
-    else
-      users = User.paginate(:page => params[:page], :per_page => 20).order(:id)
-      render json: {status: "SUCCESS", message: "Loaded  ALL users", data: users}, status: :ok
+      render json: userS
+    elsif userm.userable_type == "Student"
+
+      infoStudent = Student.showInfo(userm.userable_id) #Tutor.select("tutors.id, name, lastname , cellphone , email").joins(:user).where()
+      render json: {status: "SUCCESS", message: "Loaded TUTOR", data: infoStudent}, status: :ok
     end
-  end 
+  else
+    users = User.paginate(:page => params[:page], :per_page => 20).order(:id)
+    render json: users 
+  end
+end 
 
   def show
-    user = User.find(params[:id])
-
-    render json: {status: "SUCCESS", message: "Loaded post", data: user}, status: :ok
+    @user = User.find(params[:id])
+    render json:  @user
   end
 
   def create

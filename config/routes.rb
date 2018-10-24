@@ -7,6 +7,9 @@
 #              users_create POST   /users/create(.:format)                                                                  users#create
 #                           GET    /users/type/:em/:end(.:format)                                                           users#typeuser
 #                users_type POST   /users/type(.:format)                                                                    users#typeuserp
+#                           GET    /posts/page/:page(.:format)                                                              posts#index
+#                           GET    /users/page/:page(.:format)                                                              users#index
+#               users_pages GET    /users/pages(.:format)                                                                   users#getpages
 #                   careers GET    /careers(.:format)                                                                       careers#index
 #                           POST   /careers(.:format)                                                                       careers#create
 #                    career GET    /careers/:id(.:format)                                                                   careers#show

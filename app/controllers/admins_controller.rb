@@ -1,19 +1,19 @@
 class AdminsController < ApplicationController
   def index
     admins = Admin.order("created_at DESC")
-    render json: {status: "SUCCESS", message: "Loaded admins", data: admins}, status: :ok
+    render json: admins
   end
 
   def show
     if params[:id].present?
       admin = Admin.find(params[:id])
-      render json: {status: "SUCCESS", message: "Loaded admin", data: admin}, status: :ok
+      render json: admin
     elsif params[:user_id].present?
       type = User.find(params[:user_id]).userable_type
       if type == "Admin"
         admin_id = User.find(params[:user_id]).userable_id
         admin = Admin.find(admin_id)
-        render json: {status: "SUCCESS", message: "Loaded admin", data: admin}, status: :ok
+        render json:  admin
       else
         render json: {status: "FAIL", message: "You are not a admin, you are a " + type.downcase}, status: :not_found
       end

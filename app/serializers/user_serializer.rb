@@ -1,7 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  
-  attributes :id, :name, :lastname, :email, :cellphone, :userable_type 
-
-  belongs_to :career
-
+  type 'profile'
+  attributes :id, :name, :lastname, :email, :cellphone, :userable_type, :userable_id
+  #belongs_to :career
 end

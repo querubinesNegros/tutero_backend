@@ -1,6 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :addressedTo, :created_at, :updated_at
-
+  attributes :id, :name, :description, :addressedTo
   belongs_to :class_post
   belongs_to :admin
 
