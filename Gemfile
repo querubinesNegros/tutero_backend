@@ -34,7 +34,7 @@ gem 'rack-cors'
 
 # Usamos knock para autenticar con el JWT
 gem 'knock'
-
+gem 'carrierwave', '~> 1.0'
 # Usamos Active Model Serializers para definir las respuestas del API en JSON
 gem 'active_model_serializers'# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

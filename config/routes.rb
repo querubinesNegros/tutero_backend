@@ -28,6 +28,12 @@
 #                           PATCH  /posts/:id(.:format)                                                                     posts#update
 #                           PUT    /posts/:id(.:format)                                                                     posts#update
 #                           DELETE /posts/:id(.:format)                                                                     posts#destroy
+#                    images GET    /images(.:format)                                                                        images#index
+#                           POST   /images(.:format)                                                                        images#create
+#                     image GET    /images/:id(.:format)                                                                    images#show
+#                           PATCH  /images/:id(.:format)                                                                    images#update
+#                           PUT    /images/:id(.:format)                                                                    images#update
+#                           DELETE /images/:id(.:format)                                                                    images#destroy
 #               filep_image GET    /fileps/:filep_id/image(.:format)                                                        images#show
 #                           PATCH  /fileps/:filep_id/image(.:format)                                                        images#update
 #                           PUT    /fileps/:filep_id/image(.:format)                                                        images#update
@@ -136,7 +142,8 @@ Rails.application.routes.draw do
   
 
 #=begin
-
+  resources :images
+  resources :pdfs
   resources :users do
     resource :admin do
       resources :posts, shallow: true do
