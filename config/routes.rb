@@ -131,7 +131,7 @@ Rails.application.routes.draw do
   get '/posts/page/:page' =>  'posts#index' 
   get '/users/page/:page' =>  'users#index' 
   get '/users/pages' =>  'users#getpages'
-  #resources :users 
+  resources :socials 
   
   resources :careers
   resources :schedules

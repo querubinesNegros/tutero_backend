@@ -45,5 +45,6 @@ class User < ApplicationRecord
      User.where(email: email).pluck("userable_type")
   end
   
+  scope :search, ->(params){where(email: params)}
   
 end
