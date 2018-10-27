@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style type="text/css" media="screen">
+      h1 { color: blue; font-family: "Times New Roman", Times, serif;} 
+      p { color: blue; font-family: "Times New Roman", Times, serif; font-size:18px;}      
+    </style>
+  </head>
+  <body>
+    <h1>Buen dia,</h1>
+    <p>
+      El presente mensaje es para recordarle la cita de la tutoria acordada con el tutor:  
+      <%= @tutoring.student.tutor.user.name %> <%= @tutoring.student.tutor.user.lastname %>,
+      el proximo: <%= @tutoring.date %> a las <%= @tutoring.schedule.hour %> horas.
+    </p>
+  </body>
+</html>

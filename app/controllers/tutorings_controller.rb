@@ -1,4 +1,5 @@
 class TutoringsController < ApplicationController
+  
   def index
     
     if current_user
@@ -26,19 +27,20 @@ class TutoringsController < ApplicationController
     
   end
 
-  def show
-    tutoring = Tutoring.find(params[:id])
-
-    render json: {status: "SUCCESS", message: "Loaded post", data: tutoring}, status: :ok
+  def show    
+    @tutoring = Tutoring.find(params[:id])     
+    render json: {status: "SUCCESS", message: "Loaded post", data: @tutoring}, status: :ok
   end
 
   def create
-    tutoring = Tutoring.new(tutoring_params)
+    @tutoring = Tutoring.new(tutoring_params)
 
-    if tutoring.save
-      render json: tutoring, status: :created, location: tutoring
+    if @tutoring.save
+      render json: @tutoring, status: :created, location: @tutoring
+      TutoringsMailer.recordatorioTutoria(@tutoring).deliver_now
+      TutoringsTMailer.recordatorio_tutoria_t(@tutoring).deliver_now
     else
-      render json: tutoring.errors, status: :unprocessable_entity
+      render json: @tutoring.errors, status: :unprocessable_entity
     end
   end
 
