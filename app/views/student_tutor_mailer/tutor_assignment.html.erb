@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style type="text/css" media="screen">
+      h1 { color: blue; font-family: "Times New Roman", Times, serif;} 
+      p { color: blue; font-family: "Times New Roman", Times, serif; font-size:18px;}
+      ul { color: blue; font-family: "Times New Roman", Times, serif; font-size:18px;}      
+    </style>
+  </head>
+  <body>
+    <h1>Buen dia,</h1>
+    <p>
+      Le informamos que su tutor ha sido asignado. Los datos de contacto son los siguientes:
+    </p>
+    <ul>
+      <li>Nombre: <%= @student.tutor.user.name %> <%= @student.tutor.user.lastname %></li>
+      <li>Correo electronico: <%= @student.tutor.user.email %></li>
+      <li>Celular: <%= @student.tutor.user.cellphone %></li>
+    </ul>
+  </body>
+</html>

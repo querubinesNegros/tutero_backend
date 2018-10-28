@@ -6,14 +6,14 @@ class StudentsController < ApplicationController
 
   def show
     if params[:id].present?
-      student = Student.find(params[:id])
-      render json: {data: student}, status: :ok
+      @student = Student.find(params[:id])      
+      render json: {data: @student}, status: :ok
     else
       type = User.find(params[:user_id]).userable_type
       if type == "Student"
         student_id = User.find(params[:user_id]).userable_id
-        student = Student.find(student_id)
-        render json: {data: student}, status: :ok
+        @student = Student.find(student_id)              
+        render json: {data: @student}, status: :ok
       else
         render json: {status: "FAIL", message: "You are not a student, you are a " + type.downcase}, status: :not_found
       end
@@ -21,12 +21,14 @@ class StudentsController < ApplicationController
   end
 
   def create
-    student = Student.new(student_params)
+    @student = Student.new(student_params)
 
-    if student.save
-      render json: student, status: :created, location: student
+    if @student.save
+      StudentTutorMailer.tutor_assignment(@student).deliver_now
+      TutorMailer.student_assignment(@student).deliver_now 
+      render json: @student, status: :created, location: @student
     else
-      render json: student.errors, status: :unprocessable_entity
+      render json: @student.errors, status: :unprocessable_entity
     end
   end
 

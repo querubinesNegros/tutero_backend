@@ -29,11 +29,11 @@ def certificado
 end
 
   def create
-    tutor = Tutor.new(tutor_params)
-    if tutor.save
-      render json: tutor, status: :created, location: tutor
+    @tutor = Tutor.new(tutor_params)
+    if @tutor.save
+      render json: @tutor, status: :created, location: @tutor      
     else
-      render json: tutor.errors, status: :unprocessable_entity
+      render json: @tutor.errors, status: :unprocessable_entity
     end
   end
 

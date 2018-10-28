@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style type="text/css" media="screen">
+      h1 { color: blue; font-family: "Times New Roman", Times, serif;} 
+      p { color: blue; font-family: "Times New Roman", Times, serif; font-size:18px;}
+      ul { color: blue; font-family: "Times New Roman", Times, serif; font-size:18px;}      
+    </style>
+  </head>
+  <body>
+    <h1>Buen dia,</h1>
+    <p>
+      Le informamos que ha sido asignado como tutor del estudiante: 
+    </p>
+    <ul>
+      <li>Nombre: <%= @student.user.name %> <%= @student.user.lastname %></li>
+      <li>Correo electronico: <%= @student.user.email %></li>      
+    </ul>    
+  </body>
+</html>
