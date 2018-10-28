@@ -1,6 +1,6 @@
 class PdfsController < ApplicationController
   def index
-#    pdfs = Filep.where(id: params[:filep_id]).first.filepable
+    #    pdfs = Filep.where(id: params[:filep_id]).first.filepable
     #pdfs = Pdf.order('created_at DESC');
     render json: Pdf.all
   end

@@ -12,7 +12,7 @@ class ClassPostsController < ApplicationController
   def create
     class_post = ClassPost.new(class_post_params)
     if class_post.save
-      render json:  class_post
+      render json: class_post
     else
       render json: class_post.errors, status: :unprocessable_entity
     end

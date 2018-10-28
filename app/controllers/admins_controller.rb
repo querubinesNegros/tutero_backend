@@ -13,7 +13,7 @@ class AdminsController < ApplicationController
       if type == "Admin"
         admin_id = User.find(params[:user_id]).userable_id
         admin = Admin.find(admin_id)
-        render json:  admin
+        render json: admin
       else
         render json: {status: "FAIL", message: "You are not a admin, you are a " + type.downcase}, status: :not_found
       end

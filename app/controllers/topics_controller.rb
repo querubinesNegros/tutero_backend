@@ -1,13 +1,13 @@
 class TopicsController < ApplicationController
   def index
     topics = Topic.order("created_at DESC")
-    render json: topics 
-   end
+    render json: topics
+  end
 
   def show
     topic = Topic.find(params[:id])
 
-    render json:topic
+    render json: topic
   end
 
   def create

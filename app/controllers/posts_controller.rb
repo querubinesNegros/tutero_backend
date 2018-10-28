@@ -4,13 +4,13 @@ class PostsController < ApplicationController
     if params[:user_id].present?
       id_adm = User.userable_id(params[:user_id])
       print(id_adm)
-      posts = Post.where(admin_id: id_adm)#order(:id).paginate(:page => params[:page], :per_page => 5)
+      posts = Post.where(admin_id: id_adm) #order(:id).paginate(:page => params[:page], :per_page => 5)
     else
       posts = Post.all
     end
 
-  #   posts = Post.all#order(:id).paginate(:page => params[:page], :per_page => 5)
-    render json:  posts
+    #   posts = Post.all#order(:id).paginate(:page => params[:page], :per_page => 5)
+    render json: posts
   end
 
   def show
@@ -26,6 +26,7 @@ class PostsController < ApplicationController
       render json: post.errors, status: :unprocessable_entity
     end
   end
+
   # PATCH/PUT /books/1
   def update
     post = Post.new(post_params)
@@ -51,6 +52,6 @@ class PostsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def post_params
-    params.require(:post).permit(:class_post_id, :admin_id , :name, :description , :addressedTo)
+    params.require(:post).permit(:class_post_id, :admin_id, :name, :description, :addressedTo)
   end
 end

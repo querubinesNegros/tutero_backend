@@ -22,5 +22,4 @@ class Post < ApplicationRecord
   def self.findByType(publicationType)
     joins(:class_post).where("class_post.name = ?", publicationType)
   end
-
 end

@@ -13,6 +13,7 @@
 
 class FilepSerializer < ActiveModel::Serializer
 
-  attributes :id, :name, :created_at, :updated_at
-  belongs_to :post
+  attributes :id, :name  , :filepable_type 
+  belongs_to :filepable
+  
 end

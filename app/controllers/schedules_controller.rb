@@ -7,7 +7,7 @@ class SchedulesController < ApplicationController
     end
 
     render json: schedules
-    end
+  end
 
   def show
     schedule = Schedule.find(params[:id]).schedules
