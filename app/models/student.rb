@@ -23,8 +23,8 @@ class Student < ApplicationRecord
                                                      greater_than_or_equal_to: 1, less_than_or_equal_to: 6}
   validates :pbm, presence: true, numericality: {only_integer: true,
                                                  greater_than_or_equal_to: 1, less_than_or_equal_to: 100}
-  
-  default_scope { joins(:user).select('*') }
+
+  default_scope { joins(:user).select("*") }
 
   def self.pbmStatistics
     group(:pbm).count
@@ -38,10 +38,10 @@ class Student < ApplicationRecord
   def self.studentsOfTutor(id_t)
     select("name").where(tutor_id: id_t).joins(:user)
   end
-  
+
   def self.getMyTutor(ids) #ids es el id del estudiante
-    tutorId =  Student.where(id: ids).first.tutor_id
-    Tutor.select("users.id ,email, name, lastname, cellphone").where(id: tutorId ).joins(:user)
+    tutorId = Student.where(id: ids).first.tutor_id
+    Tutor.select("users.id ,email, name, lastname, cellphone").where(id: tutorId).joins(:user)
   end
   def self.showInfo(ids) #student
     select("users.id, users.userable_id , name, lastname, email, cellphone, pbm, age, stratus ").where(id: ids).joins(:user)

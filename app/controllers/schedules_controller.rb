@@ -6,7 +6,7 @@ class SchedulesController < ApplicationController
       schedules = Schedule.order("created_at DESC")
     end
 
-    render json: {status: "SUCCESS", message: "Loaded schedules", data: schedules}, status: :ok
+    render json: schedules
   end
 
   def show

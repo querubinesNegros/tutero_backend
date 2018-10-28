@@ -1,23 +1,34 @@
 class PostsController < ApplicationController
+  def getpages
+    pages = (Post.count.to_f / 10).to_f.ceil
+    render json: {status: "SUCCESS", message: "Loaded pages users", data: pages}, status: :ok
+  end
 
   def index
-    posts = Post.order(:id).paginate(:page => params[:page], :per_page => 5)
-    render json: {data: posts}, status: :ok 
-  end 
+    print(params)
+    if params[:user_id].present?
+      id_adm = User.userable_id(params[:user_id])
+      print(id_adm)
+      posts = Post.where(admin_id: id_adm).order(:id).paginate(:page => params[:page], :per_page => 10)
+    else
+      posts = Post.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    end
+
+    #   posts = Post.all#order(:id).paginate(:page => params[:page], :per_page => 5)
+    render json: posts
+  end
 
   def show
     post = Post.find(params[:id])
-
     render json: {data: post}, status: :ok
   end
 
   def create
     post = Post.new(post_params)
-
     if post.save
       render json: post, status: :created, location: post
     else
-      render json: Post.errors, status: :unprocessable_entity
+      render json: post.errors, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +38,7 @@ class PostsController < ApplicationController
     if post.update(post_params)
       render json: post
     else
-      render json: Post.errors, status: :unprocessable_entity
+      render json: post.errors, status: :unprocessable_entity
     end
   end
 
@@ -46,6 +57,6 @@ class PostsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def post_params
-    params.require(:post).permit(:class_post_id, :admin_id , :name, :description , :addressedTo)
+    params.require(:post).permit(:class_post_id, :admin_id, :name, :description, :addressedTo)
   end
 end

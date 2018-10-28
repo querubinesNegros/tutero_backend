@@ -1,19 +1,19 @@
 class StudentsController < ApplicationController
   def index
-    students = Student.order("created_at DESC")
-    render json: {status: "SUCCESS", message: "Loaded students", data: students}, status: :ok
+    students = Student.all
+    render json: students
   end
 
   def show
     if params[:id].present?
-      @student = Student.find(params[:id])      
-      render json: {data: @student}, status: :ok
+      student = Student.find(params[:id])
+      render json: student
     else
       type = User.find(params[:user_id]).userable_type
       if type == "Student"
         student_id = User.find(params[:user_id]).userable_id
-        @student = Student.find(student_id)              
-        render json: {data: @student}, status: :ok
+        student = Student.find(student_id)
+        render json: student
       else
         render json: {status: "FAIL", message: "You are not a student, you are a " + type.downcase}, status: :not_found
       end

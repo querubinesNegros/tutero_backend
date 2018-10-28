@@ -1,7 +1,7 @@
 class CareersController < ApplicationController
   def index
-    careers = Career.order("created_at DESC")
-    render json: {status: "SUCCESS", message: "Loaded careers", data: careers}, status: :ok
+    careers = Career.all
+    render json: careers
   end
 
   def show

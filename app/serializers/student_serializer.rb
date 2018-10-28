@@ -1,9 +1,17 @@
+# == Schema Information
+#
+# Table name: students
+#
+#  id         :bigint(8)        not null, primary key
+#  age        :integer
+#  stratus    :integer
+#  pbm        :integer
+#  tutor_id   :bigint(8)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class StudentSerializer < ActiveModel::Serializer
-  attributes :id, :age, :stratus, :pbm
-
-  belongs_to :tutor
-  has_one :user
-  has_and_belongs_to_many :schedules
-  has_many :tutorings
-
+  attributes :id
+  has_one :user, as: :userable
 end

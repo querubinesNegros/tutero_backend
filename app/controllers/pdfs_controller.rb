@@ -1,8 +1,8 @@
 class PdfsController < ApplicationController
   def index
-    pdfs = Filep.where(id: params[:filep_id]).first.filepable
+    #    pdfs = Filep.where(id: params[:filep_id]).first.filepable
     #pdfs = Pdf.order('created_at DESC');
-    render json: {status: "SUCCESS", message: "Loaded pdfs", data: pdfs}, status: :ok
+    render json: Pdf.all
   end
 
   def show
@@ -16,7 +16,6 @@ class PdfsController < ApplicationController
 
   def create
     pdf = Pdf.new(pdf_params)
-
     if pdf.save
       render json: pdf, status: :created, location: pdf
     else
@@ -48,6 +47,6 @@ class PdfsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def pdf_params
-    params.require(:pdf).permit(:name)
+    params.permit(:path)
   end
 end

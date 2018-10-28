@@ -1,14 +1,13 @@
 # == Schema Information
 #
-# Table name: images
+# Table name: class_posts
 #
 #  id         :bigint(8)        not null, primary key
-#  path       :string
+#  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Image < ApplicationRecord
-  mount_uploader :path, PathUploader
-  has_one :filep, as: :filepable
+class ClassPostSerializer < ActiveModel::Serializer
+  attributes :id, :name
 end

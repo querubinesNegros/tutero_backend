@@ -8,7 +8,6 @@
 #  updated_at :datetime         not null
 #
 
-class Image < ApplicationRecord
-  mount_uploader :path, PathUploader
-  has_one :filep, as: :filepable
+class ImageSerializer < ActiveModel::Serializer
+  attributes :id, :path
 end

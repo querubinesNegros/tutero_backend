@@ -1,30 +1,23 @@
 class TutoringsController < ApplicationController
   
   def index
-    
     if current_user
-      case current_user.userable_type      
-      when "Student" 
+      case current_user.userable_type
+      when "Student"
         if current_user.id.to_i == params[:user_id].to_i
           tutorings = Student.getTutoringsById(current_user.userable_id)
-          render json: {status: "SUCCESS", message: "Loaded student tutorings ", data: tutorings}, status: :ok         
+          render json: {status: "SUCCESS", message: "Loaded student tutorings ", data: tutorings}, status: :ok
         end
-
       when "Tutor"
         if current_user.id.to_i == params[:user_id].to_i
           tutorings = Tutor.getTutorings(current_user.userable_id)
-          render json: {status: "SUCCESS", message: "Loaded tutor ttutorings", data: tutorings}, status: :ok         
+          render json: {status: "SUCCESS", message: "Loaded tutor ttutorings", data: tutorings}, status: :ok
         end
-        
-
       end
-
     else
       tutorings = Tutoring.order("created_at DESC")
       render json: {status: "SUCCESS", message: "all tutorings", data: tutorings}, status: :ok
     end
-  
-    
   end
 
   def show    

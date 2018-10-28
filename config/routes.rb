@@ -7,6 +7,15 @@
 #              users_create POST   /users/create(.:format)                                                                  users#create
 #                           GET    /users/type/:em/:end(.:format)                                                           users#typeuser
 #                users_type POST   /users/type(.:format)                                                                    users#typeuserp
+#                           GET    /posts/page/:page(.:format)                                                              posts#index
+#                           GET    /users/page/:page(.:format)                                                              users#index
+#               users_pages GET    /users/pages(.:format)                                                                   users#getpages
+#                   socials GET    /socials(.:format)                                                                       socials#index
+#                           POST   /socials(.:format)                                                                       socials#create
+#                    social GET    /socials/:id(.:format)                                                                   socials#show
+#                           PATCH  /socials/:id(.:format)                                                                   socials#update
+#                           PUT    /socials/:id(.:format)                                                                   socials#update
+#                           DELETE /socials/:id(.:format)                                                                   socials#destroy
 #                   careers GET    /careers(.:format)                                                                       careers#index
 #                           POST   /careers(.:format)                                                                       careers#create
 #                    career GET    /careers/:id(.:format)                                                                   careers#show
@@ -25,6 +34,18 @@
 #                           PATCH  /posts/:id(.:format)                                                                     posts#update
 #                           PUT    /posts/:id(.:format)                                                                     posts#update
 #                           DELETE /posts/:id(.:format)                                                                     posts#destroy
+#                    images GET    /images(.:format)                                                                        images#index
+#                           POST   /images(.:format)                                                                        images#create
+#                     image GET    /images/:id(.:format)                                                                    images#show
+#                           PATCH  /images/:id(.:format)                                                                    images#update
+#                           PUT    /images/:id(.:format)                                                                    images#update
+#                           DELETE /images/:id(.:format)                                                                    images#destroy
+#                      pdfs GET    /pdfs(.:format)                                                                          pdfs#index
+#                           POST   /pdfs(.:format)                                                                          pdfs#create
+#                       pdf GET    /pdfs/:id(.:format)                                                                      pdfs#show
+#                           PATCH  /pdfs/:id(.:format)                                                                      pdfs#update
+#                           PUT    /pdfs/:id(.:format)                                                                      pdfs#update
+#                           DELETE /pdfs/:id(.:format)                                                                      pdfs#destroy
 #               filep_image GET    /fileps/:filep_id/image(.:format)                                                        images#show
 #                           PATCH  /fileps/:filep_id/image(.:format)                                                        images#update
 #                           PUT    /fileps/:filep_id/image(.:format)                                                        images#update
@@ -119,12 +140,15 @@ Rails.application.routes.draw do
   post   '/users/create'   => 'users#create'
   get '/users/type/:em/:end' =>  'users#typeuser' 
   post '/users/type/' =>  'users#typeuserp' 
+ 
   get '/posts/page/:page' =>  'posts#index' 
   get '/users/page/:page' =>  'users#index' 
   get '/users/pages' =>  'users#getpages'
   get '/users/:user_id/tutor/certificado' =>  'tutors#certificado'
   
   #resources :users 
+  get '/posts/pages' =>  'posts#getpages'
+  resources :socials 
   
   resources :careers
   resources :schedules
@@ -135,7 +159,8 @@ Rails.application.routes.draw do
   
 
 #=begin
-
+  resources :images
+  resources :pdfs
   resources :users do
     resource :admin do
       resources :posts, shallow: true do
@@ -145,16 +170,16 @@ Rails.application.routes.draw do
         end
       end
     end
-    resource :student, shallow: true do
-      resources :schedules
-      resources :tutorings
-    end
-    resource :tutor, shallow: true do
-      resources :schedules
+      resource :student, shallow: true do
+        resources :schedules
+        resources :tutorings
+      end
+      resource :tutor, shallow: true do
+        resources :schedules
       resources :tutorings
     end
   end
- # resources :students
+#  resources :students
  # resources :tutors
  # resources :admins
  # resources :careers

@@ -22,10 +22,10 @@ gem 'puma', '~> 3.11'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'will_paginate', '~> 3.1.0'
+#gem 'will_paginate', '~> 3.1.0'
 
 #to populate the database
-gem 'faker', '~> 1.9', '>= 1.9.1'
+#gem 'faker', '~> 1.9', '>= 1.9.1'
 
 #Enables to convert HTML to PDF
 #gem 'wicked_pdf'
@@ -33,6 +33,10 @@ gem 'faker', '~> 1.9', '>= 1.9.1'
 
 gem 'prawn'
 
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'faker', '~> 1.9', '>= 1.9.1'
+gem 'will_paginate', '~> 3.1.0'
 # Esta gema nos permite habilita "has_secure_password" en Active Record
 gem 'bcrypt', '~> 3.1.7'
 
@@ -41,11 +45,9 @@ gem 'rack-cors'
 
 # Usamos knock para autenticar con el JWT
 gem 'knock'
-
+gem 'carrierwave', '~> 1.0'
 # Usamos Active Model Serializers para definir las respuestas del API en JSON
-gem 'active_model_serializers', '~> 0.10.0'
-
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'active_model_serializers'# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
 group :development, :test do
