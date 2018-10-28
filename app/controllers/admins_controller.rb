@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
   def index
-    admins = Admin.order("created_at DESC")
+    admins = Admin.all
     render json: admins
   end
 

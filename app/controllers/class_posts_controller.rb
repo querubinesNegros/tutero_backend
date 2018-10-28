@@ -14,7 +14,7 @@ class ClassPostsController < ApplicationController
     if class_post.save
       render json:  class_post
     else
-      render json: ClassPost.errors, status: :unprocessable_entity
+      render json: class_post.errors, status: :unprocessable_entity
     end
   end
 

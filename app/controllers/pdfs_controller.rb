@@ -16,7 +16,6 @@ class PdfsController < ApplicationController
 
   def create
     pdf = Pdf.new(pdf_params)
-
     if pdf.save
       render json: pdf, status: :created, location: pdf
     else

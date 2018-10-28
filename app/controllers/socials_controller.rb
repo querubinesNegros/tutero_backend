@@ -24,7 +24,5 @@ class SocialsController < ApplicationController
     end
   
    
-  
-  
     
   end

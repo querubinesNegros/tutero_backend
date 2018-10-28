@@ -13,5 +13,5 @@
 
 class StudentSerializer < ActiveModel::Serializer
   attributes :id
-  has_one :userable
+  has_one :user, as: :userable
 end
