@@ -1,12 +1,17 @@
 class PostsController < ApplicationController
+  def getpages
+    pages = (Post.count.to_f / 10).to_f.ceil
+    render json: {status: "SUCCESS", message: "Loaded pages users", data: pages}, status: :ok
+  end
+
   def index
     print(params)
     if params[:user_id].present?
       id_adm = User.userable_id(params[:user_id])
       print(id_adm)
-      posts = Post.where(admin_id: id_adm) #order(:id).paginate(:page => params[:page], :per_page => 5)
+      posts = Post.where(admin_id: id_adm).order(:id).paginate(:page => params[:page], :per_page => 10)
     else
-      posts = Post.all
+      posts = Post.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     end
 
     #   posts = Post.all#order(:id).paginate(:page => params[:page], :per_page => 5)

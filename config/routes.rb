@@ -140,9 +140,11 @@ Rails.application.routes.draw do
   post   '/users/create'   => 'users#create'
   get '/users/type/:em/:end' =>  'users#typeuser' 
   post '/users/type/' =>  'users#typeuserp' 
+ 
   get '/posts/page/:page' =>  'posts#index' 
   get '/users/page/:page' =>  'users#index' 
   get '/users/pages' =>  'users#getpages'
+  get '/posts/pages' =>  'posts#getpages'
   resources :socials 
   
   resources :careers
