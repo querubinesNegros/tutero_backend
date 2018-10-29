@@ -9,5 +9,6 @@
 #
 
 class Image < ApplicationRecord
+  mount_uploader :path, PathUploader
   has_one :filep, as: :filepable
 end

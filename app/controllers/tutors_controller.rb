@@ -4,13 +4,6 @@ class TutorsController < ApplicationController
     render json: {status: "SUCCESS", message: "Loaded tutors", data: tutors}, status: :ok
   end
 
-=begin
-  def index
-    @tutors = Tutor.all
-    render json: @tutors
-  end
-=end
-
   def show
     type = User.find(params[:user_id]).userable_type
     if type == "Tutor"
@@ -20,14 +13,27 @@ class TutorsController < ApplicationController
     else
       render json: {status: "FAIL", message: "You are not a tutor, you are a " + type.downcase}, status: :not_found
     end
+  end 
+
+def certificado
+  tutor_id = User.find(params[:user_id]).userable_id
+  @tutor = Tutor.find(tutor_id)
+  respond_to do |format|
+    format.html
+    format.pdf do
+      pdf = CertificadoPdf.new(@tutor)      
+      send_data pdf.render, filename: "certificado_#{@tutor.user.name + @tutor.user.lastname + DateTime.now.strftime('-%m-%d-%Y')}.pdf", 
+                            disposition: "inline"
+    end           
   end
+end
 
   def create
-    tutor = Tutor.new(tutor_params)
-    if tutor.save
-      render json: tutor, status: :created, location: tutor
+    @tutor = Tutor.new(tutor_params)
+    if @tutor.save
+      render json: @tutor, status: :created, location: @tutor      
     else
-      render json: tutor.errors, status: :unprocessable_entity
+      render json: @tutor.errors, status: :unprocessable_entity
     end
   end
 

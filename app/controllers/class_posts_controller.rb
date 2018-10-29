@@ -1,22 +1,20 @@
 class ClassPostsController < ApplicationController
   def index
     class_posts = ClassPost.order("created_at DESC")
-    render json: {status: "SUCCESS", message: "Loaded class_posts", data: class_posts}, status: :ok
+    render json: class_posts
   end
 
   def show
-    class_post = ClassPost.find(params[:id]).class_posts
-
-    render json: {status: "SUCCESS", message: "Loaded post", data: class_post}, status: :ok
+    class_post = ClassPost.find(params[:id])
+    render json: class_post
   end
 
   def create
     class_post = ClassPost.new(class_post_params)
-
     if class_post.save
-      render json: class_post, status: :created, location: class_post
+      render json: class_post
     else
-      render json: ClassPost.errors, status: :unprocessable_entity
+      render json: class_post.errors, status: :unprocessable_entity
     end
   end
 
