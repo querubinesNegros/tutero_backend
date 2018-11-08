@@ -145,7 +145,12 @@ Rails.application.routes.draw do
   get '/users/page/:page' =>  'users#index' 
   get '/users/pages' =>  'users#getpages'
   get '/users/:user_id/tutor/certificado' =>  'tutors#certificado'
+<<<<<<< HEAD
   post 'users/cmp_psw' => 'users#cmpass'
+=======
+  get '/users/:user_id/admin/estadisticas' => 'admins#estadisticas'
+  
+>>>>>>> 0fc1f6711512b4cb192bfb904735bdf7e18676f3
   #resources :users 
   get '/posts/pages' =>  'posts#getpages'
   resources :socials 

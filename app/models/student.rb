@@ -27,8 +27,16 @@ class Student < ApplicationRecord
   default_scope { joins(:user).select("*") }
 
   def self.pbmStatistics
-    group(:pbm).count
+    order(:pbm).group(:pbm).count
   end
+
+  def self.stratusStatistics
+    order(:stratus).group(:stratus).count
+  end
+
+  def self.ageStatistics
+    order(:age).group(:age).count
+  end  
 
   #def self.findNotes(words, id)
   #  joins(:tutorings).where("(tutorings.noteStudent LIKE ? OR tutorings.noteTutor LIKE ?) AND student_id = ?"
