@@ -60,10 +60,10 @@ class AdminsController < ApplicationController
       end   
       format.json do
         render json: {
-          data1: data1,
-          data2: data2,
-          data3: data3,
-          data4: data4
+          estudiantes_por_PBM: data1,
+          estudiantes_por_estrato: data2,
+          estudiantes_por_edad: data3,
+          frecuencia_temas_tutorias: data4
         }.to_json
       end        
     end

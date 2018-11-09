@@ -30,6 +30,7 @@ gem 'puma', '~> 3.11'
 
 #pdf generation
 gem 'prawn'
+gem 'prawn-table'
 
 #A Ruby library to plot charts in PDF files
 gem 'squid', '~> 1.2'
