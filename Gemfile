@@ -35,7 +35,7 @@ gem 'prawn'
 gem 'squid', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-#gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faker', '~> 1.9', '>= 1.9.1'
 gem 'will_paginate', '~> 3.1.0'
 # Esta gema nos permite habilita "has_secure_password" en Active Record
