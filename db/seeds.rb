@@ -20,7 +20,8 @@ for i  in 0..(days.count)
   end
 end
 
-
+topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servicios de bienestar', 
+  'Tramites Administrativos', 'Problemas personales', 'Plan de estudios', 'Otros' ]
 
 10.times do
   #Creamos una carrera
@@ -104,7 +105,7 @@ end
     userstudent.save
 
     st = Student.last
-    topic = Topic.new(name:Faker::Name.unique.name )
+    topic = Topic.new(name: topics [rand(0 .. 7)] )
     topic.save
     
     tutoring = Tutoring.new(type_t: "Presencial", duration: rand(1 .. 5), noteTutor: Faker::HowIMetYourMother.quote )
