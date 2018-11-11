@@ -51,8 +51,16 @@ class SchedulesController < ApplicationController
   end
 
   def destroy
-    schedule = Schedule.find(params[:id])
-    schedule.destroy
+    if  params[:user_id].present?
+      user = User.find(params[:user_id])
+      user.userable.schedules.delete(Schedule.find(params[:id]))
+      render json: user.userable.schedules
+
+    else
+      schedule = Schedule.find(params[:id])
+      schedule.destroy
+    end
+    
   end
 
   private
