@@ -111,6 +111,18 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.destroy
   end
+  def cmpass
+    id = params[:id]
+    pass = params[:password]
+    user = User.find(id)
+    if user.authenticate(pass)
+      render json: true
+    else
+      render json: false
+
+    end
+    
+  end
 
   private
 

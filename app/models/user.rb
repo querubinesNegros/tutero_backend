@@ -13,6 +13,7 @@
 #  updated_at      :datetime         not null
 #  name            :string
 #  lastname        :string
+#  pict            :string
 #
 
 class User < ApplicationRecord
@@ -20,6 +21,7 @@ class User < ApplicationRecord
   belongs_to :userable, polymorphic: true, optional: true
   has_many :tutorings
   has_secure_password
+  mount_uploader :pict, PictUploader
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_PASSWORD_REGEX = /^(?=.*\d)(?=.*([a-z]|[A-Z]))([\x20-\x7E]){8,40}$/i

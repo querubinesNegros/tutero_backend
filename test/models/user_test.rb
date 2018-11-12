@@ -13,6 +13,7 @@
 #  updated_at      :datetime         not null
 #  name            :string
 #  lastname        :string
+#  pict            :string
 #
 
 require 'test_helper'

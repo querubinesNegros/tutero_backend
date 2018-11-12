@@ -27,11 +27,13 @@ gem 'puma', '~> 3.11'
 #to populate the database
 #gem 'faker', '~> 1.9', '>= 1.9.1'
 
-#Enables to convert HTML to PDF
-#gem 'wicked_pdf'
-#gem 'wkhtmltopdf-binary'
 
+#pdf generation
 gem 'prawn'
+gem 'prawn-table'
+
+#A Ruby library to plot charts in PDF files
+gem 'squid', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

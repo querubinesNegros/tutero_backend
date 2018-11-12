@@ -28,9 +28,10 @@ class Tutoring < ApplicationRecord
   validates :schedule_id, presence: true
   validates :student_id, presence: true
 
-  default_scope { joins(:topic).select("*") }
+  default_scope { joins(:topic) }
 
   def self.topicStatistics
-    group(:topic).count
+    select("topics.name").group("topics.name").order('count_topics_name').count
   end
+  
 end

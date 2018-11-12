@@ -10,6 +10,10 @@
 #                           GET    /posts/page/:page(.:format)                                                              posts#index
 #                           GET    /users/page/:page(.:format)                                                              users#index
 #               users_pages GET    /users/pages(.:format)                                                                   users#getpages
+#                           GET    /users/:user_id/tutor/certificado(.:format)                                              tutors#certificado
+#             users_cmp_psw POST   /users/cmp_psw(.:format)                                                                 users#cmpass
+#                           GET    /users/:user_id/admin/estadisticas(.:format)                                             admins#estadisticas
+#               posts_pages GET    /posts/pages(.:format)                                                                   posts#getpages
 #                   socials GET    /socials(.:format)                                                                       socials#index
 #                           POST   /socials(.:format)                                                                       socials#create
 #                    social GET    /socials/:id(.:format)                                                                   socials#show
@@ -145,6 +149,8 @@ Rails.application.routes.draw do
   get '/users/page/:page' =>  'users#index' 
   get '/users/pages' =>  'users#getpages'
   get '/users/:user_id/tutor/certificado' =>  'tutors#certificado'
+  post '/users/cmp_psw' => 'users#cmpass'
+  get '/users/:user_id/admin/estadisticas' => 'admins#estadisticas'
   
   #resources :users 
   get '/posts/pages' =>  'posts#getpages'
