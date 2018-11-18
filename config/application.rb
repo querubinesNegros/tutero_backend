@@ -19,6 +19,10 @@ Bundler.require(*Rails.groups)
 
 module Tutero
   class Application < Rails::Application
+
+    #Active job Queuing backend 
+    #config.active_job.queue_adapter = :sidekiq
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.middleware.insert_before 0, Rack::Cors do
