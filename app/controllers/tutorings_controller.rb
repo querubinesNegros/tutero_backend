@@ -21,17 +21,19 @@ class TutoringsController < ApplicationController
   end
 
   def show    
-    @tutoring = Tutoring.find(params[:id])     
+    @tutoring = Tutoring.find(params[:id])   
     render json: {status: "SUCCESS", message: "Loaded post", data: @tutoring}, status: :ok
   end
 
   def create
     @tutoring = Tutoring.new(tutoring_params)
 
-    if @tutoring.save
+    if @tutoring.save   
+      id = @tutoring.id  
+      MailsSenderJob.perform_later id  
+      #TutoringsMailer.recordatorioTutoria(@tutoring).deliver_later
+      #TutoringsTMailer.recordatorio_tutoria_t(@tutoring).deliver_later
       render json: @tutoring, status: :created, location: @tutoring
-      TutoringsMailer.recordatorioTutoria(@tutoring).deliver_now
-      TutoringsTMailer.recordatorio_tutoria_t(@tutoring).deliver_now
     else
       render json: @tutoring.errors, status: :unprocessable_entity
     end

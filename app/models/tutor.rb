@@ -30,6 +30,10 @@ class Tutor < ApplicationRecord
     joins(:tutorings).where("tutor_id = ? AND date > ?", id, DateTime.now - 30).sum("duration")
   end
 
+  def self.promScoreTutorings(id)
+    joins(:tutorings).where("tutor_id = ?", id).average("score")
+  end
+
   def self.getTutorings(userable_id)
     Student.joins(:tutorings, :user).where(tutor_id: userable_id).select("tutorings.id ,score , name, lastname , review, duration, date , schedule_id , topic_id")
     #Tutoring.select("type_t , duration, date, score, review" ).joins(:student).where("tutor_id = ?" ,userable_id)
