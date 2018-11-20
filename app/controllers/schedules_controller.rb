@@ -2,6 +2,8 @@ class SchedulesController < ApplicationController
   def index
     #Si es tutor o si coincide el id buscado con el usuario actual, retorna los horarios del usuario correspondiente
     cond = current_user && (current_user.userable_type == "Tutor" || params[:user_id].to_i == current_user.id.to_i) 
+    print("*******\n")
+    print(current_user.id)
     if params[:user_id].present? && cond    
       msg = "Loaded schedules user"
       schedules = User.find(params[:user_id]).userable.schedules
@@ -20,15 +22,17 @@ class SchedulesController < ApplicationController
     if params[:user_id].present? && current_user.id.to_i == params[:user_id].to_i
       user = User.find(current_user.id)
       #POST   /users/:user_id/student/schedules(.:format)                                              schedules#create
-      if user.userable_type = "Student"
-        user = Student.find(user.userable_id)
-      elsif user.userable_type = "Tutor"
-        user = Tutor.find(user.userable_id)
+      if user.userable_type == "Student"
+        user = user.userable
+      elsif user.userable_type == "Tutor"
+        user = user.userable
       end
+      
       #schedule = Schedule.find(params[:id])
-      print(params[:schedule_ids])
+      print("*********\n")
+      print(user.id )
       print("here")
-      if user.schedule_ids = params[:schedule_ids]
+      if user.schedule_ids = params[:ids][:schedule_ids]
         print(user.schedules) 
         render json: user.schedules, status: :ok, message: "Add schedule to user"
       else

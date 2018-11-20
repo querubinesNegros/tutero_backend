@@ -155,7 +155,6 @@ Rails.application.routes.draw do
   #resources :users 
   get '/posts/pages' =>  'posts#getpages'
   resources :socials 
-  
   resources :careers
   resources :schedules
   resources :posts
