@@ -18,14 +18,14 @@ class Student < ApplicationRecord
   has_many :tutorings
 
 
-  validates :age, presence: true, numericality: {only_integer: true,
-                                                 greater_than_or_equal_to: 12, less_than_or_equal_to: 80}
-  validates :stratus, presence: true, numericality: {only_integer: true,
-                                                     greater_than_or_equal_to: 1, less_than_or_equal_to: 6}
-  validates :pbm, presence: true, numericality: {only_integer: true,
-                                                 greater_than_or_equal_to: 1, less_than_or_equal_to: 100}
+   #validates :age, presence: true, numericality: {only_integer: true,
+   #                                              greater_than_or_equal_to: 12, less_than_or_equal_to: 80}
+  #validates :stratus, presence: true, numericality: {only_integer: true,
+   #                                                  greater_than_or_equal_to: 1, less_than_or_equal_to: 6}
+  #validates :pbm, presence: true, numericality: {only_integer: true,
+  #                                               greater_than_or_equal_to: 1, less_than_or_equal_to: 100}
 
-  default_scope { joins(:user).select("*") }
+  #default_scope { joins(:user).select("*") }
 
   def self.pbmStatistics
     queryOutput  = order(:pbm).group(:pbm).count    

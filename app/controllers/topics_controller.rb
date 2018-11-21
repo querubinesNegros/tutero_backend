@@ -16,7 +16,7 @@ class TopicsController < ApplicationController
     if topic.save
       render json: topic, status: :created, location: topic
     else
-      render json: Topic.errors, status: :unprocessable_entity
+      render json: topic.errors, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +26,7 @@ class TopicsController < ApplicationController
     if topic.update(topic_params)
       render json: topic
     else
-      render json: Topic.errors, status: :unprocessable_entity
+      render json: topic.errors, status: :unprocessable_entity
     end
   end
 

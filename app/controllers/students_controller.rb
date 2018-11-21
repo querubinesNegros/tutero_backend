@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   def index
     students = Student.all
-    render json: students
+    render json: {status: "SUCCESS", message: "Loaded tutors", data: students}, status: :ok
   end
 
   def show
