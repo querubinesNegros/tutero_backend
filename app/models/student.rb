@@ -77,4 +77,7 @@ class Student < ApplicationRecord
   def self.getTutoringsById(id_userable)
     Tutoring.where(student_id: id_userable)
   end
+  def self.horarios(id)
+    joins(:schedules).where("student_id = ?", id).pluck("schedules.name", :hour)
+  end
 end
