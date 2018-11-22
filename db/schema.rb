@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_08_224512) do
+ActiveRecord::Schema.define(version: 2018_11_22_200026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,12 @@ ActiveRecord::Schema.define(version: 2018_11_08_224512) do
     t.bigint "post_id"
     t.index ["filepable_type", "filepable_id"], name: "index_fileps_on_filepable_type_and_filepable_id"
     t.index ["post_id"], name: "index_fileps_on_post_id"
+  end
+
+  create_table "google_acounts", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "images", force: :cascade do |t|

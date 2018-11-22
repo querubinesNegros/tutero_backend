@@ -12,5 +12,5 @@
 #
 
 class StudentSerializer < ActiveModel::Serializer
-  attributes :id, :pbm , :age, :stratus
+  attributes :id, :pbm , :age, :stratus, :tutor
 end
