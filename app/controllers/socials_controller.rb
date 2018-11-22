@@ -18,6 +18,7 @@ class SocialsController < ApplicationController
       google_user.name = params[:name]
       google_user.lastname = params[:lastname]
       google_user.userable_type = params[:userable_type]
+      google_user.pict = params[:image]
 
       case params[:userable_type]
       when "Admin"
@@ -45,6 +46,6 @@ class SocialsController < ApplicationController
     else
       knock_token = Knock::AuthToken.new payload: {sub: @user.id}
       render json: knock_token
-    end
+    endr
   end
 end
