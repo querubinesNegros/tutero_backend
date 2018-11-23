@@ -9,6 +9,6 @@
 #
 
 class TutorSerializer < ActiveModel::Serializer
-  attributes :id
-  has_one :userable
+  attributes :id, :ammountStudents 
+ # has_one :user, as: :userable
 end

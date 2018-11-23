@@ -1,7 +1,7 @@
 class TutorsController < ApplicationController
   def index
     tutors = Tutor.order("created_at DESC")
-    render json: {status: "SUCCESS", message: "Loaded tutors", data: tutors}, status: :ok
+    render json:  tutors , status: :ok
   end
 
   def show
@@ -9,7 +9,7 @@ class TutorsController < ApplicationController
     if type == "Tutor"
       tutor_id = User.find(params[:user_id]).userable_id
       tutor = Tutor.find(tutor_id)
-      render json: {status: "SUCCESS", message: "Loaded tutors", data: tutor}, status: :ok
+      render json:  data: tutor status: :ok
     else
       render json: {status: "FAIL", message: "You are not a tutor, you are a " + type.downcase}, status: :not_found
     end
