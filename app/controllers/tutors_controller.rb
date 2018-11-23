@@ -9,7 +9,7 @@ class TutorsController < ApplicationController
     if type == "Tutor"
       tutor_id = User.find(params[:user_id]).userable_id
       tutor = Tutor.find(tutor_id)
-      render json:  data: tutor status: :ok
+      render json:  data: tutor ,status: :ok
     else
       render json: {status: "FAIL", message: "You are not a tutor, you are a " + type.downcase}, status: :not_found
     end
