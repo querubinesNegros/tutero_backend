@@ -16,13 +16,13 @@ class TutoringsController < ApplicationController
       end
     else
       tutorings = Tutoring.order("created_at DESC")
-      render json:  tutorings  status: :ok
+      render json:  tutorings,  status: :ok
     end
   end
 
   def show    
     @tutoring = Tutoring.find(params[:id])   
-    render json: {status: "SUCCESS", message: "Loaded post", data: @tutoring}, status: :ok
+    render json: @tutoring , status: :ok
   end
 
   def create
