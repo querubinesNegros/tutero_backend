@@ -181,14 +181,14 @@ Rails.application.routes.draw do
       end
       resource :tutor, shallow: true do
         resources :schedules
-      resources :tutorings
+        resources :tutorings
     end
   end
 #  resources :students
  # resources :tutors
  # resources :admins
  # resources :careers
- # resources :topics
+  resources :topics
  # resources :schedules
 
   resources :class_posts do

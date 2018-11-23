@@ -26,6 +26,7 @@ class TutoringsController < ApplicationController
   end
 
   def create
+
     @tutoring = Tutoring.new(tutoring_params)
 
     if @tutoring.save   
@@ -64,6 +65,6 @@ class TutoringsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def tutoring_params
-    params.require(:tutoring).permit()
+    params.require(:tutoring).permit(:topic_id, :type_t, :schedule_id, :date, :student_id )
   end
 end
