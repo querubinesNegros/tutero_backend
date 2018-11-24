@@ -117,6 +117,12 @@
 #                           PATCH  /users/:id(.:format)                                                                     users#update
 #                           PUT    /users/:id(.:format)                                                                     users#update
 #                           DELETE /users/:id(.:format)                                                                     users#destroy
+#                    topics GET    /topics(.:format)                                                                        topics#index
+#                           POST   /topics(.:format)                                                                        topics#create
+#                     topic GET    /topics/:id(.:format)                                                                    topics#show
+#                           PATCH  /topics/:id(.:format)                                                                    topics#update
+#                           PUT    /topics/:id(.:format)                                                                    topics#update
+#                           DELETE /topics/:id(.:format)                                                                    topics#destroy
 #          class_post_posts GET    /class_posts/:class_post_id/posts(.:format)                                              posts#index
 #                           POST   /class_posts/:class_post_id/posts(.:format)                                              posts#create
 #           class_post_post GET    /class_posts/:class_post_id/posts/:id(.:format)                                          posts#show

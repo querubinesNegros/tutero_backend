@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
   #consultas
   def self.getUsersByCareer(career_id)
-    User.select("users.id, email, name, lastname").where(career_id: career_id)
+    User.where(career_id: career_id, userable_type: "Tutor" )
   end
 
   def self.getCareerByID(id_c)
