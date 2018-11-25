@@ -10,6 +10,7 @@ class TutoringsController < ApplicationController
         end
       when "Tutor"
         if current_user.id.to_i == params[:user_id].to_i
+          print(current_user.id.to_i)
           tutorings = Tutor.getTutorings(current_user.userable_id)
           render json: tutorings , status: :ok
         end
