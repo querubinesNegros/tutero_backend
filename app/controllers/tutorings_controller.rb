@@ -27,9 +27,8 @@ class TutoringsController < ApplicationController
   end
 
   def create
-
     @tutoring = Tutoring.new(tutoring_params)
-
+    
     if @tutoring.save   
       id = @tutoring.id  
       MailsSenderJob.perform_later id  
