@@ -1,12 +1,14 @@
 class StudentsController < ApplicationController
   def index
     if current_user
+      userS = []
+      userm = current_user
       if current_user.userable_type == "Tutor"
-        studTutor = Student.studentsOfTutor(userm.userable_id) #Student.where( tutor_id: userm.userable_id)
-        studTutor.each do |st|
-          userS.push(User.where("userable_type = ? and userable_id = ?", "Student", st.id).first)
-        end
-        render json: userS
+        studTutor = Student.where( tutor_id: userm.userable_id)
+        #studTutor.each do |st|
+        #  userS.push(User.where("userable_type = ? and userable_id = ?", "Student", st.id).first)
+        #end
+        render json: studTutor
       end
     else 
       students = Student.all
