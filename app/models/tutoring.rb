@@ -21,7 +21,7 @@ class Tutoring < ApplicationRecord
   belongs_to :topic
   belongs_to :schedule
   belongs_to :student
-  #belongs_to :tutor
+  belongs_to :tutor
 
   #validates :score, presence: true, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 5}
   #validates :duration, presence: true, numericality: true
@@ -29,9 +29,7 @@ class Tutoring < ApplicationRecord
   validates :schedule_id, presence: true
   validates :student_id, presence: true
   
-  def tutor_id
-    student.tutor_id
-  end
+ 
   #default_scope { joins(:topic) }
 
   def self.topicStatistics

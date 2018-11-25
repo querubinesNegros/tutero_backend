@@ -28,10 +28,11 @@ class TutoringsController < ApplicationController
 
   def create
     @tutoring = Tutoring.new(tutoring_params)
-    
+    @tutoring.tutor =  Tutor.find(current_user.userable_id)
+
     if @tutoring.save   
       id = @tutoring.id  
-      MailsSenderJob.perform_later id  
+     # MailsSenderJob.perform_later id  
       #TutoringsMailer.recordatorioTutoria(@tutoring).deliver_later
       #TutoringsTMailer.recordatorio_tutoria_t(@tutoring).deliver_later
       render json: @tutoring, status: :created, location: @tutoring
