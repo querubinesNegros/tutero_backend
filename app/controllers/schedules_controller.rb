@@ -18,6 +18,7 @@ class SchedulesController < ApplicationController
     schedule = Schedule.find(params[:id])
     render json: {status: "SUCCESS", message: "Loaded post", data: schedule}, status: :ok
   end
+  
   def create
     if params[:user_id].present? && current_user.id.to_i == params[:user_id].to_i
       user = User.find(current_user.id)
@@ -33,7 +34,20 @@ class SchedulesController < ApplicationController
       print(user.id )
       print("here")
       if user.schedule_ids = params[:ids][:schedule_ids]
-        print(user.schedules) 
+        print(user.schedules)              
+        user = User.find(current_user.id)
+        if user.userable_type == "Student" then 
+          student_id = user.userable.id         
+          idTutorToAssign = Tutor.findTutorToStudent(student_id)
+          tutorToAssign = Tutor.find(idTutorToAssign)
+          student.tutor = tutorToAssign
+          student.save
+          tutorToAssign.ammountStudents = tutorToAssign.ammountStudents + 1
+          tutorToAssign.save
+          MailsSender2Job.perform_later student_id
+        end
+        user = user.userable
+        
         render json: user.schedules, status: :ok, message: "Add schedule to user"
       else
         render json: user.errors, status: :unprocessable_entity, message: "don't allow"
