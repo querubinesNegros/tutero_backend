@@ -37,7 +37,7 @@ class StudentsController < ApplicationController
 
     if @student.save
       id = @student.id
-      MailsSender2Job.perform_later id
+      #MailsSender2Job.perform_later id
       #StudentTutorMailer.tutor_assignment(@student).deliver_now
       #TutorMailer.student_assignment(@student).deliver_now 
       render json: @student, status: :created, location: @student

@@ -31,7 +31,7 @@ class Tutoring < ApplicationRecord
   #default_scope { joins(:topic) }
 
   def self.topicStatistics
-    select("topics.name").group("topics.name").order('count_topics_name').count
+    joins(:topic).select("topics.name").group("topics.name").order('count_topics_name').count
   end
   
 end
