@@ -106,6 +106,12 @@
 #                           PATCH  /tutorings/:id(.:format)                                                                 tutorings#update
 #                           PUT    /tutorings/:id(.:format)                                                                 tutorings#update
 #                           DELETE /tutorings/:id(.:format)                                                                 tutorings#destroy
+#       user_tutor_students GET    /users/:user_id/tutor/students(.:format)                                                 students#index
+#                           POST   /users/:user_id/tutor/students(.:format)                                                 students#create
+#                   student GET    /students/:id(.:format)                                                                  students#show
+#                           PATCH  /students/:id(.:format)                                                                  students#update
+#                           PUT    /students/:id(.:format)                                                                  students#update
+#                           DELETE /students/:id(.:format)                                                                  students#destroy
 #                user_tutor GET    /users/:user_id/tutor(.:format)                                                          tutors#show
 #                           PATCH  /users/:user_id/tutor(.:format)                                                          tutors#update
 #                           PUT    /users/:user_id/tutor(.:format)                                                          tutors#update
@@ -188,6 +194,7 @@ Rails.application.routes.draw do
       resource :tutor, shallow: true do
         resources :schedules
         resources :tutorings
+        resources :students
     end
   end
 #  resources :students

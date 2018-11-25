@@ -1,8 +1,18 @@
 class StudentsController < ApplicationController
   def index
-    students = Student.all
-    render json: {status: "SUCCESS", message: "Loaded tutors", data: students}, status: :ok
-  end
+    if current_user
+      if current_user.userable_type == "Tutor"
+        studTutor = Student.studentsOfTutor(userm.userable_id) #Student.where( tutor_id: userm.userable_id)
+        studTutor.each do |st|
+          userS.push(User.where("userable_type = ? and userable_id = ?", "Student", st.id).first)
+        end
+        render json: userS
+      end
+    else 
+      students = Student.all
+      render json: {status: "SUCCESS", message: "Loaded tutors", data: students}, status: :ok
+    end
+      end
 
   def show
     if params[:id].present?
