@@ -62,7 +62,7 @@ class UsersController < ApplicationController
         render json: userS
       elsif userm.userable_type == "Student"
         infoStudent = Student.showInfo(userm.userable_id) #Tutor.select("tutors.id, name, lastname , cellphone , email").joins(:user).where()
-        render json: {status: "SUCCESS", message: "Loaded TUTOR", data: infoStudent}, status: :ok
+        render json: infoStudent, status: :ok
       end
     else
       users = User.paginate(:page => params[:page], :per_page => 20).order(:id)

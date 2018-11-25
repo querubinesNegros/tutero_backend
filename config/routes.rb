@@ -26,30 +26,12 @@
 #                           PATCH  /careers/:id(.:format)                                                                   careers#update
 #                           PUT    /careers/:id(.:format)                                                                   careers#update
 #                           DELETE /careers/:id(.:format)                                                                   careers#destroy
-#                 schedules GET    /schedules(.:format)                                                                     schedules#index
-#                           POST   /schedules(.:format)                                                                     schedules#create
-#                  schedule GET    /schedules/:id(.:format)                                                                 schedules#show
-#                           PATCH  /schedules/:id(.:format)                                                                 schedules#update
-#                           PUT    /schedules/:id(.:format)                                                                 schedules#update
-#                           DELETE /schedules/:id(.:format)                                                                 schedules#destroy
 #                     posts GET    /posts(.:format)                                                                         posts#index
 #                           POST   /posts(.:format)                                                                         posts#create
 #                      post GET    /posts/:id(.:format)                                                                     posts#show
 #                           PATCH  /posts/:id(.:format)                                                                     posts#update
 #                           PUT    /posts/:id(.:format)                                                                     posts#update
 #                           DELETE /posts/:id(.:format)                                                                     posts#destroy
-#                    images GET    /images(.:format)                                                                        images#index
-#                           POST   /images(.:format)                                                                        images#create
-#                     image GET    /images/:id(.:format)                                                                    images#show
-#                           PATCH  /images/:id(.:format)                                                                    images#update
-#                           PUT    /images/:id(.:format)                                                                    images#update
-#                           DELETE /images/:id(.:format)                                                                    images#destroy
-#                      pdfs GET    /pdfs(.:format)                                                                          pdfs#index
-#                           POST   /pdfs(.:format)                                                                          pdfs#create
-#                       pdf GET    /pdfs/:id(.:format)                                                                      pdfs#show
-#                           PATCH  /pdfs/:id(.:format)                                                                      pdfs#update
-#                           PUT    /pdfs/:id(.:format)                                                                      pdfs#update
-#                           DELETE /pdfs/:id(.:format)                                                                      pdfs#destroy
 #               filep_image GET    /fileps/:filep_id/image(.:format)                                                        images#show
 #                           PATCH  /fileps/:filep_id/image(.:format)                                                        images#update
 #                           PUT    /fileps/:filep_id/image(.:format)                                                        images#update
@@ -79,7 +61,7 @@
 #                           POST   /users/:user_id/admin(.:format)                                                          admins#create
 #    user_student_schedules GET    /users/:user_id/student/schedules(.:format)                                              schedules#index
 #                           POST   /users/:user_id/student/schedules(.:format)                                              schedules#create
-#                           GET    /schedules/:id(.:format)                                                                 schedules#show
+#                  schedule GET    /schedules/:id(.:format)                                                                 schedules#show
 #                           PATCH  /schedules/:id(.:format)                                                                 schedules#update
 #                           PUT    /schedules/:id(.:format)                                                                 schedules#update
 #                           DELETE /schedules/:id(.:format)                                                                 schedules#destroy
@@ -106,6 +88,12 @@
 #                           PATCH  /tutorings/:id(.:format)                                                                 tutorings#update
 #                           PUT    /tutorings/:id(.:format)                                                                 tutorings#update
 #                           DELETE /tutorings/:id(.:format)                                                                 tutorings#destroy
+#       user_tutor_students GET    /users/:user_id/tutor/students(.:format)                                                 students#index
+#                           POST   /users/:user_id/tutor/students(.:format)                                                 students#create
+#                   student GET    /students/:id(.:format)                                                                  students#show
+#                           PATCH  /students/:id(.:format)                                                                  students#update
+#                           PUT    /students/:id(.:format)                                                                  students#update
+#                           DELETE /students/:id(.:format)                                                                  students#destroy
 #                user_tutor GET    /users/:user_id/tutor(.:format)                                                          tutors#show
 #                           PATCH  /users/:user_id/tutor(.:format)                                                          tutors#update
 #                           PUT    /users/:user_id/tutor(.:format)                                                          tutors#update
@@ -117,12 +105,13 @@
 #                           PATCH  /users/:id(.:format)                                                                     users#update
 #                           PUT    /users/:id(.:format)                                                                     users#update
 #                           DELETE /users/:id(.:format)                                                                     users#destroy
-#          class_post_posts GET    /class_posts/:class_post_id/posts(.:format)                                              posts#index
-#                           POST   /class_posts/:class_post_id/posts(.:format)                                              posts#create
+#                    topics GET    /topics(.:format)                                                                        topics#index
+#                           POST   /topics(.:format)                                                                        topics#create
+#                     topic GET    /topics/:id(.:format)                                                                    topics#show
+#                           PATCH  /topics/:id(.:format)                                                                    topics#update
+#                           PUT    /topics/:id(.:format)                                                                    topics#update
+#                           DELETE /topics/:id(.:format)                                                                    topics#destroy
 #           class_post_post GET    /class_posts/:class_post_id/posts/:id(.:format)                                          posts#show
-#                           PATCH  /class_posts/:class_post_id/posts/:id(.:format)                                          posts#update
-#                           PUT    /class_posts/:class_post_id/posts/:id(.:format)                                          posts#update
-#                           DELETE /class_posts/:class_post_id/posts/:id(.:format)                                          posts#destroy
 #               class_posts GET    /class_posts(.:format)                                                                   class_posts#index
 #                           POST   /class_posts(.:format)                                                                   class_posts#create
 #                class_post GET    /class_posts/:id(.:format)                                                               class_posts#show
@@ -156,7 +145,6 @@ Rails.application.routes.draw do
   get '/posts/pages' =>  'posts#getpages'
   resources :socials 
   resources :careers
-  resources :schedules
   resources :posts
 
   
@@ -164,8 +152,6 @@ Rails.application.routes.draw do
   
 
 #=begin
-  resources :images
-  resources :pdfs
   resources :users do
     resource :admin do
       resources :posts, shallow: true do
@@ -181,18 +167,19 @@ Rails.application.routes.draw do
       end
       resource :tutor, shallow: true do
         resources :schedules
-      resources :tutorings
+        resources :tutorings
+        resources :students , only:[:index]
     end
   end
 #  resources :students
  # resources :tutors
  # resources :admins
  # resources :careers
- # resources :topics
+  resources :topics
  # resources :schedules
 
   resources :class_posts do
-     resources :posts
+     resources :posts , only: [:show , :index]
    end
   # resources :schedules
   # resources :tutorings

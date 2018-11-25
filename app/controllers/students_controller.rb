@@ -1,8 +1,20 @@
 class StudentsController < ApplicationController
   def index
-    students = Student.all
-    render json: {status: "SUCCESS", message: "Loaded tutors", data: students}, status: :ok
-  end
+    if current_user
+      userS = []
+      userm = current_user
+      if current_user.userable_type == "Tutor"
+        studTutor = Student.where( tutor_id: userm.userable_id)
+        #studTutor.each do |st|
+        #  userS.push(User.where("userable_type = ? and userable_id = ?", "Student", st.id).first)
+        #end
+        render json: studTutor
+      end
+    else 
+      students = Student.all
+      render json: {status: "SUCCESS", message: "Loaded tutors", data: students}, status: :ok
+    end
+      end
 
   def show
     if params[:id].present?
@@ -25,7 +37,7 @@ class StudentsController < ApplicationController
 
     if @student.save
       id = @student.id
-      MailsSender2Job.perform_later id
+      #MailsSender2Job.perform_later id
       #StudentTutorMailer.tutor_assignment(@student).deliver_now
       #TutorMailer.student_assignment(@student).deliver_now 
       render json: @student, status: :created, location: @student

@@ -23,6 +23,6 @@ class TutoringSerializer < ActiveModel::Serializer
 
   belongs_to :topic
   belongs_to :schedule
-  belongs_to :student
+  belongs_to :student 
 
 end

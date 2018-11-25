@@ -18,6 +18,6 @@
 
 class UserSerializer < ActiveModel::Serializer
   type 'profile'
-  attributes :id, :name, :lastname, :email, :cellphone, :userable_type, :userable_id
+  attributes :id, :name, :lastname, :email, :cellphone, :userable_type, :userable_id, :pict
   #belongs_to :career
 end
