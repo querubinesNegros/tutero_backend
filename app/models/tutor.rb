@@ -35,7 +35,9 @@ class Tutor < ApplicationRecord
   end
 
   def self.getTutorings(userable_id)
-    Student.joins(:tutorings, :user).where(tutor_id: userable_id)
+    #Tutoring.where(tutor: userable_id)
+    #Student.joins(:tutorings, :user).where(tutor_id: userable_id)
+    Tutoring.joins(:student).where("tutor_id = ?" ,userable_id)
     #Tutoring.select("type_t , duration, date, score, review" ).joins(:student).where("tutor_id = ?" ,userable_id)
     #Tutor.joins(:tutorings, :students, :user).where("students.tutor_id =  ? ",userable_id).select("score , review , name")
   end
