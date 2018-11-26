@@ -1,4 +1,3 @@
 FEATURES DESARROLLADAS:
- - Johnathan Leon
- - Nicolas Parra
-FEATURES A DESARROLLAR:
+Active Jobs - Johnathan Leon
+Arreglo rutas, flujos - Nicolas Parra
