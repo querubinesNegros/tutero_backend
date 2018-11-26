@@ -1,0 +1,2 @@
+class GoogleAcount < ApplicationRecord
+end

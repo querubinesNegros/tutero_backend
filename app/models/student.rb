@@ -18,23 +18,28 @@ class Student < ApplicationRecord
   has_many :tutorings
 
 
-  validates :age, presence: true, numericality: {only_integer: true,
-                                                 greater_than_or_equal_to: 12, less_than_or_equal_to: 80}
-  validates :stratus, presence: true, numericality: {only_integer: true,
-                                                     greater_than_or_equal_to: 1, less_than_or_equal_to: 6}
-  validates :pbm, presence: true, numericality: {only_integer: true,
-                                                 greater_than_or_equal_to: 1, less_than_or_equal_to: 100}
+   #validates :age, presence: true, numericality: {only_integer: true,
+   #                                              greater_than_or_equal_to: 12, less_than_or_equal_to: 80}
+  #validates :stratus, presence: true, numericality: {only_integer: true,
+   #                                                  greater_than_or_equal_to: 1, less_than_or_equal_to: 6}
+  #validates :pbm, presence: true, numericality: {only_integer: true,
+  #                                               greater_than_or_equal_to: 1, less_than_or_equal_to: 100}
 
-  default_scope { joins(:user).select("*") }
+  #default_scope { joins(:user).select("*") }
 
   def self.pbmStatistics
     queryOutput  = order(:pbm).group(:pbm).count    
+    queryOutput.delete(nil)
+   
     keysOutput = queryOutput.keys
     hash = {'1-20'=>0,'21-40'=>0,'41-60'=>0,'61-80'=>0,'81-100'=>0,}
     intervalos = hash.keys
     i=0
     j=20
-    while i < keysOutput.length do       
+    
+    print(queryOutput)
+    while i < keysOutput.length do  
+           
       if keysOutput[i] <= j
         hash[(j-19).to_s + '-' +  (j).to_s] = hash[(j-19).to_s + '-' +  (j).to_s] + queryOutput [keysOutput[i]]
       else 
@@ -64,7 +69,7 @@ class Student < ApplicationRecord
   #end
 
   def self.studentsOfTutor(id_t)
-    select("name").where(tutor_id: id_t).joins(:user)
+    where(tutor_id: id_t).joins(:user)
   end
 
   def self.getMyTutor(ids) #ids es el id del estudiante
@@ -76,5 +81,8 @@ class Student < ApplicationRecord
   end
   def self.getTutoringsById(id_userable)
     Tutoring.where(student_id: id_userable)
+  end
+  def self.horarios(id)
+    joins(:schedules).where("student_id = ?", id).pluck("schedules.name", :hour)
   end
 end

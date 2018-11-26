@@ -26,6 +26,7 @@ gem 'puma', '~> 3.11'
 
 #to populate the database
 #gem 'faker', '~> 1.9', '>= 1.9.1'
+#carrierwve google storage
 
 
 #pdf generation
@@ -35,8 +36,11 @@ gem 'prawn-table'
 #A Ruby library to plot charts in PDF files
 gem 'squid', '~> 1.2'
 
+#Queuing backend for active job
+#gem 'sidekiq'
+
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+#gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faker', '~> 1.9', '>= 1.9.1'
 gem 'will_paginate', '~> 3.1.0'
 # Esta gema nos permite habilita "has_secure_password" en Active Record
@@ -44,7 +48,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Usamos Rack CORS para habiliar Cross-Origin Resource Sharing (CORS)
 gem 'rack-cors'
-
+ 
+gem 'fog', '1.38.0'
+gem 'mini_magick'
+gem 'google-cloud'
 # Usamos knock para autenticar con el JWT
 gem 'knock'
 gem 'carrierwave', '~> 1.0'

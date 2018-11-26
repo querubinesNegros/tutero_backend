@@ -62,7 +62,7 @@ class UsersController < ApplicationController
         render json: userS
       elsif userm.userable_type == "Student"
         infoStudent = Student.showInfo(userm.userable_id) #Tutor.select("tutors.id, name, lastname , cellphone , email").joins(:user).where()
-        render json: {status: "SUCCESS", message: "Loaded TUTOR", data: infoStudent}, status: :ok
+        render json: infoStudent, status: :ok
       end
     else
       users = User.paginate(:page => params[:page], :per_page => 20).order(:id)
@@ -85,13 +85,16 @@ class UsersController < ApplicationController
         adm.save
         user.userable_id = adm.id
       when "Student"
-        student = Student.new(student_params)
+        student = Student.new()
         student.save
-        user.userable_id = student.id
+        print("**********************\n")
+        print(student.id)
+        user.userable = student
       end
       user.save
-      render json: user, status: :created, location: user.password
+      render json: user, status: :created
     else
+      print(user.errors)
       render json: user.errors, status: :unprocessable_entity
     end
   end
@@ -137,7 +140,7 @@ class UsersController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def user_params
-    params.require(:user).permit(:name, :lastname, :email, :password, :password_confirmation, :cellphone, :userable_type)
+    params.require(:user).permit(:name, :lastname, :email, :password, :password_confirmation, :cellphone, :userable_type, :career_id)
   end
 
   def student_params

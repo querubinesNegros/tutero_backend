@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_08_224512) do
+ActiveRecord::Schema.define(version: 2018_11_26_005626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,12 @@ ActiveRecord::Schema.define(version: 2018_11_08_224512) do
     t.bigint "post_id"
     t.index ["filepable_type", "filepable_id"], name: "index_fileps_on_filepable_type_and_filepable_id"
     t.index ["post_id"], name: "index_fileps_on_post_id"
+  end
+
+  create_table "google_acounts", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "images", force: :cascade do |t|
@@ -106,7 +112,6 @@ ActiveRecord::Schema.define(version: 2018_11_08_224512) do
   create_table "tutorings", force: :cascade do |t|
     t.bigint "topic_id"
     t.string "type_t"
-    t.bigint "schedule_id"
     t.integer "duration"
     t.text "noteStudent"
     t.text "noteTutor"
@@ -116,9 +121,11 @@ ActiveRecord::Schema.define(version: 2018_11_08_224512) do
     t.text "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["schedule_id"], name: "index_tutorings_on_schedule_id"
+    t.bigint "tutor_id"
+    t.string "hour"
     t.index ["student_id"], name: "index_tutorings_on_student_id"
     t.index ["topic_id"], name: "index_tutorings_on_topic_id"
+    t.index ["tutor_id"], name: "index_tutorings_on_tutor_id"
   end
 
   create_table "tutors", force: :cascade do |t|
@@ -149,7 +156,6 @@ ActiveRecord::Schema.define(version: 2018_11_08_224512) do
   add_foreign_key "schedules_tutors", "schedules"
   add_foreign_key "schedules_tutors", "tutors"
   add_foreign_key "students", "tutors"
-  add_foreign_key "tutorings", "schedules"
   add_foreign_key "tutorings", "students"
   add_foreign_key "tutorings", "topics"
 end

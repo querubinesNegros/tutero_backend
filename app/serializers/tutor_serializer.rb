@@ -9,6 +9,9 @@
 #
 
 class TutorSerializer < ActiveModel::Serializer
-  attributes :id
-  has_one :userable
+  attributes :id, :ammountStudents, :score  
+ # has_one :user, as: :userable 
+ def score
+  Tutor.promScoreTutorings(object.id)
+ end
 end
