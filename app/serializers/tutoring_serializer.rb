@@ -19,10 +19,9 @@
 
 class TutoringSerializer < ActiveModel::Serializer
   
-  attributes :id, :type_t, :date, :duration, :noteStudent, :noteTutor, :score, :review, :tutor_id
+  attributes :id, :type_t, :date, :duration, :noteStudent, :noteTutor, :score, :review, :tutor_id , :hour
 
   belongs_to :topic
-  belongs_to :schedule
   belongs_to :student
 
 
