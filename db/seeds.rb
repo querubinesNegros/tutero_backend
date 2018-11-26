@@ -8,17 +8,17 @@
 
 #users admins
 #user tutor  
-days = ['lunes', 'martes', 'miercoles' , 'jueves', 'viernes', 'sabado' ]
-
-for i  in 0..(days.count)
-  for j in 7..22
-    #print("Day: " + days[i] + " hour: " + j.to_s)
-
-    sh = Schedule.new(name: days[i], hour: j)
-    sh.save
-    
-  end
-end
+#days = ['lunes', 'martes', 'miercoles' , 'jueves', 'viernes', 'sabado' ]
+#
+#for i  in 0..(days.count)
+#  for j in 7..22
+ #   #print("Day: " + days[i] + " hour: " + j.to_s)
+#
+#    sh = Schedule.new(name: days[i], hour: j)
+#    sh.save
+#    
+#  end
+#end
 
 topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servicios de bienestar', 
   'Tramites Administrativos', 'Problemas personales', 'Plan de estudios', 'Otros' ]
@@ -112,7 +112,6 @@ topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servici
     tutoring.date = Faker::Date.between(2.days.ago, Date.today)
     tutoring.score  = rand(5)
     tutoring.review = Faker::BackToTheFuture.quote
-    tutoring.schedule = tutor.schedules.first
     tutoring.student =   student
     tutoring.topic_id = topic.id
     tutoring.save
