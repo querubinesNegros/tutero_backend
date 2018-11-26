@@ -181,8 +181,8 @@ Rails.application.routes.draw do
   resources :class_posts do
      resources :posts , only: [:show , :index]
    end
-  # resources :schedules
-  # resources :tutorings
+   resources :schedules
+   resources :tutorings
 #=end
 
 end
