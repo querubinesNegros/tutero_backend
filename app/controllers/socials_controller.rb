@@ -17,7 +17,7 @@ class SocialsController < ApplicationController
       google_user.email = params[:email]
       google_user.name = params[:name]
       google_user.lastname = params[:lastname]
-      google_user.userable_type = params[:userable_type]
+      google_user.userable_type = "Student"
       google_user.pict = params[:image]
 
       case params[:userable_type]

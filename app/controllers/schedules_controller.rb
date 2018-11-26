@@ -39,7 +39,12 @@ class SchedulesController < ApplicationController
         if user.userable_type == "Student" then 
           student_id = user.userable.id         
           idTutorToAssign = Tutor.findTutorToStudent(student_id)
+          print("*************************\n")
           tutorToAssign = Tutor.find(idTutorToAssign)
+          print("*************************\n")
+          
+          print(idTutorToAssign)
+          
           student.tutor = tutorToAssign
           student.save
           tutorToAssign.ammountStudents = tutorToAssign.ammountStudents + 1
