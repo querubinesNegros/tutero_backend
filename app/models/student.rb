@@ -29,12 +29,17 @@ class Student < ApplicationRecord
 
   def self.pbmStatistics
     queryOutput  = order(:pbm).group(:pbm).count    
+    queryOutput.delete(nil)
+   
     keysOutput = queryOutput.keys
     hash = {'1-20'=>0,'21-40'=>0,'41-60'=>0,'61-80'=>0,'81-100'=>0,}
     intervalos = hash.keys
     i=0
     j=20
-    while i < keysOutput.length do       
+    
+    print(queryOutput)
+    while i < keysOutput.length do  
+           
       if keysOutput[i] <= j
         hash[(j-19).to_s + '-' +  (j).to_s] = hash[(j-19).to_s + '-' +  (j).to_s] + queryOutput [keysOutput[i]]
       else 
