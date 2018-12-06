@@ -37,8 +37,10 @@ class SchedulesController < ApplicationController
         print(user.schedules)              
         user = User.find(current_user.id)
         if user.userable_type == "Student" then 
-          student_id = user.userable.id         
+          student_id = user.userable.id   
+          student = Student.find(student_id)
           idTutorToAssign = Tutor.findTutorToStudent(student_id)
+          print(idTutorToAssign)
           print("*************************\n")
           tutorToAssign = Tutor.find(idTutorToAssign)
           print("*************************\n")

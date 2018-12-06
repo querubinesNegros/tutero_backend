@@ -6,7 +6,8 @@
 #  ammountStudents :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#
+#"
+          
 
 class Tutor < ApplicationRecord
   has_one :user, as: :userable
@@ -47,6 +48,7 @@ class Tutor < ApplicationRecord
   end
 
   def self.findTutorToStudent(student_id)
+    
     tutors = Tutor.ids
     horariosStudent = Student.horarios(student_id)
     tutorsSchedTrue = []
@@ -54,6 +56,7 @@ class Tutor < ApplicationRecord
     i=0
     while i < tutors.length do     
       horariosTutor = Tutor.horarios(tutors[i])
+      print()
       if ((horariosTutor & horariosStudent) != [] ) then
         tutorsSchedTrue.push (tutors[i])
       end

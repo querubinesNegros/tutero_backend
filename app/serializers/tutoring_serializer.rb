@@ -5,7 +5,6 @@
 #  id          :bigint(8)        not null, primary key
 #  topic_id    :bigint(8)
 #  type_t      :string
-#  schedule_id :bigint(8)
 #  duration    :integer
 #  noteStudent :text
 #  noteTutor   :text
@@ -15,6 +14,8 @@
 #  review      :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  tutor_id    :bigint(8)
+#  hour        :string
 #
 
 class TutoringSerializer < ActiveModel::Serializer

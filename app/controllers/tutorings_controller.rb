@@ -44,7 +44,7 @@ class TutoringsController < ApplicationController
   # PATCH/PUT /books/1
   def update
     tutoring = Tutoring.find(params[:id])
-    if tutoring.update(tutoring_params)
+    if tutoring.update(tutoring_update)
       render json: tutoring
     else
       render json: Tutoring.errors, status: :unprocessable_entity
@@ -63,8 +63,11 @@ class TutoringsController < ApplicationController
   def set_tutor
     tutoring = Tutoring.find(params[:id])
   end
-
+  def 
   # Only allow a trusted parameter "white list" through.
+  def tutoring_update
+    params.require(:tutoring).permit(:topic_id, :type_t, :hour, :date, :duration, :noteStudent, :noteTutor, :score, :review,   )
+  end
   def tutoring_params
     params.require(:tutoring).permit(:topic_id, :type_t, :hour, :date, :student_id )
   end
