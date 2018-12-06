@@ -55,7 +55,7 @@ class SchedulesController < ApplicationController
         end
         user = user.userable
         
-        render json: user.schedules, status: :ok, message: "Add schedule to user"
+        render json: user.schedules, status: :created, message: "Add schedule to user"
       else
         render json: user.errors, status: :unprocessable_entity, message: "don't allow"
       end
