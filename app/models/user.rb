@@ -21,7 +21,6 @@ class User < ApplicationRecord
   belongs_to :userable, polymorphic: true, optional: true
   has_many :tutorings
   has_secure_password :validations => false
-  #has_secure_password
   
   VALID_EMAIL_UNAL = /(([a-zA-Z]+_[a-zA-Z]+)||([a-zA-Z]+))@unal.edu.co/i
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -31,8 +30,7 @@ class User < ApplicationRecord
                     format: {with: VALID_EMAIL_REGEX}
   validates :name, presence: true, length: {minimum: 2, maximum: 50}
   validates :lastname, presence: true, length: {minimum: 2, maximum: 50}
-  #validates :userable, presence: true
-
+  
   #consultas
   def self.getUsersByCareer(career_id)
     User.where(career_id: career_id, userable_type: "Tutor" )
@@ -42,7 +40,7 @@ class User < ApplicationRecord
     Career.select("id, name").where(id: id_c).first
   end
   def self.getType(email)
-    User.where(email: email).pluck("userable_type")
+    User.where(email: email).pluck("userable_type , career_id")
   end
 
   scope :search, -> (params) { where(email: params) }

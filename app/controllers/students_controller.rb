@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  before_action :authenticate_user
   def index
     if current_user
       userS = []

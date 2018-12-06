@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     eml = eml + "." + ends
     type = User.getType(eml)
-    render json: {status: "SUCCESS", message: "Loaded TUTOR", data: type}, status: :ok
+    render json: {status: "SUCCESS", message: "Loaded", data: type}, status: :ok
   end
 
   def typeuserp
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     print("*********")
     print(params)
     type = User.getType(email)
-    render json: {status: "SUCCESS", message: "Loaded TUTOR", data: type}, status: :ok
+    render json: {status: "SUCCESS", message: "Loaded p", data: type}, status: :ok
 
     print(email)
   end
@@ -135,7 +135,7 @@ class UsersController < ApplicationController
   end
 
   def params_update
-    params.require(:user).permit(:name, :lastname, :password, :password_confirmation, :cellphone)
+    params.require(:user).permit(:name, :lastname, :password, :password_confirmation, :cellphone, :career_id)
   end
 
   # Only allow a trusted parameter "white list" through.

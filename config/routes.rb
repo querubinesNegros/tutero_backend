@@ -171,12 +171,8 @@ Rails.application.routes.draw do
         resources :students , only:[:index]
     end
   end
-#  resources :students
- # resources :tutors
- # resources :admins
- # resources :careers
   resources :topics
- # resources :schedules
+  
 
   resources :class_posts do
      resources :posts , only: [:show , :index]
