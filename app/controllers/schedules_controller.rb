@@ -1,24 +1,24 @@
 class SchedulesController < ApplicationController
   def index
     #Si es tutor o si coincide el id buscado con el usuario actual, retorna los horarios del usuario correspondiente
-    cond = current_user && (current_user.userable_type == "Tutor" || params[:user_id].to_i == current_user.id.to_i) 
+    cond = current_user && (current_user.userable_type == "Tutor" || params[:user_id].to_i == current_user.id.to_i)
     print("*******\n")
     print(current_user.id)
-    if params[:user_id].present? && cond    
+    if params[:user_id].present? && cond
       msg = "Loaded schedules user"
       schedules = User.find(params[:user_id]).userable.schedules
     else
       schedules = Schedule.order("created_at DESC")
       msg = "Loaded every schedules"
     end
-    render json: schedules, status: :ok, message: msg 
+    render json: schedules, status: :ok, message: msg
   end
 
   def show
     schedule = Schedule.find(params[:id])
     render json: {status: "SUCCESS", message: "Loaded post", data: schedule}, status: :ok
   end
-  
+
   def create
     if params[:user_id].present? && current_user.id.to_i == params[:user_id].to_i
       user = User.find(current_user.id)
@@ -28,25 +28,25 @@ class SchedulesController < ApplicationController
       elsif user.userable_type == "Tutor"
         user = user.userable
       end
-      
+
       #schedule = Schedule.find(params[:id])
       print("*********\n")
-      print(user.id )
+      print(user.id)
       print("here")
       if user.schedule_ids = params[:ids][:schedule_ids]
-        print(user.schedules)              
+        print(user.schedules)
         user = User.find(current_user.id)
-        if user.userable_type == "Student" then 
-          student_id = user.userable.id   
+        if user.userable_type == "Student"
+          student_id = user.userable.id
           student = Student.find(student_id)
           idTutorToAssign = Tutor.findTutorToStudent(student_id)
           print(idTutorToAssign)
           print("*************************\n")
           tutorToAssign = Tutor.find(idTutorToAssign)
           print("*************************\n")
-          
+
           print(idTutorToAssign)
-          
+
           student.tutor = tutorToAssign
           student.save
           tutorToAssign.ammountStudents = tutorToAssign.ammountStudents + 1
@@ -54,7 +54,7 @@ class SchedulesController < ApplicationController
           MailsSender2Job.perform_later student_id
         end
         user = user.userable
-        
+
         render json: user.schedules, status: :created, message: "Add schedule to user"
       else
         render json: user.errors, status: :unprocessable_entity, message: "don't allow"

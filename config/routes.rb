@@ -135,6 +135,11 @@ Rails.application.routes.draw do
   post '/users/type/' =>  'users#typeuserp' 
  
   get '/posts/page/:page' =>  'posts#index' 
+  
+  get '/users/:user_id/tutor/tutorings/page/:page' => 'tutorings#index'
+  get '/users/:user_id/tutor/tutorings/pages' =>  'tutorings#getpages'
+  
+  
   get '/users/page/:page' =>  'users#index' 
   get '/users/pages' =>  'users#getpages'
   get '/users/:user_id/tutor/certificado' =>  'tutors#certificado'

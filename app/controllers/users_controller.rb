@@ -114,6 +114,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.destroy
   end
+
   def cmpass
     id = params[:id]
     pass = params[:password]
@@ -122,9 +123,7 @@ class UsersController < ApplicationController
       render json: true
     else
       render json: false
-
     end
-    
   end
 
   private
