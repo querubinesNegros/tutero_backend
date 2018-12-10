@@ -11,6 +11,7 @@ class CertificadoPdf < Prawn::Document
     text "Nombre del tutor: #{@tutor.user.name + ' ' + @tutor.user.lastname}" , size: 20, style: :bold, align: :center
     text "Periodo: #{'Del ' + (DateTime.now-30).strftime('%m-%d-%Y') + ' al ' + (DateTime.now).strftime('%m-%d-%Y')}", size: 20, style: :bold, align: :center      
     text "Numero de horas realizadas: #{Tutor.totalHoursTutorings(@tutor.id)}" , size: 20, style: :bold, align: :center
+    text "Calificacion obtenida: #{Tutor.promScoreTutorings(@tutor.id)}" , size: 20, style: :bold, align: :center
   end
 
   def titulo
