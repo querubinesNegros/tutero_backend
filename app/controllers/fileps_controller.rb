@@ -17,10 +17,12 @@ class FilepsController < ApplicationController
     id = params[:post_id]
     path = params[:path]
 
-    if params[:type] == "image"
-      data = Image.new(path: path)
-    else
+    if params[:type] == "pdf"
       data = Pdf.new(path: path)
+
+    else
+      data = Image.new(path: path)
+
     end
     if data.save
       filep = Filep.new(name: name_file, post_id: id)
