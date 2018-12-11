@@ -24,14 +24,14 @@ class TutoringsController < ApplicationController
       case current_user.userable_type
       when "Student"
         if current_user.id.to_i == params[:user_id].to_i
-          tutorings = Student.getTutoringsById(current_user.userable_id).paginate(:page => params[:page], :per_page => 10)
-          render json: tutorings, status: :ok
+          tutorings = Student.getTutoringsById(current_user.userable_id).paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
+          render json: tutorings, status: :order("created_at DESC")
         end
       when "Tutor"
         if current_user.id.to_i == params[:user_id].to_i
           print(current_user.id.to_i)
-          tutorings = Tutor.getTutorings(current_user.userable_id).paginate(:page => params[:page], :per_page => 10)
-          render json: tutorings, status: :ok
+          tutorings = Tutor.getTutorings(current_user.userable_id).paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
+          render json: tutorings, status: :okorder("created_at DESC")
         end
       end
     else
