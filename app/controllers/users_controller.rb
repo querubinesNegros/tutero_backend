@@ -92,7 +92,7 @@ class UsersController < ApplicationController
         print(student.id)
         user.userable = student
       when "Tutor"
-        tutor = TUtor.new()
+        tutor = Tutor.new()
         tutor.ammountStudents = 0
         tutor.save
         user.userable = tutor
