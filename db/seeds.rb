@@ -18,7 +18,7 @@ for i  in 0..(days.count - 1 )
     
   end
 end
-=begin
+
 topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servicios de bienestar', 
   'Tramites Administrativos', 'Problemas personales', 'Plan de estudios', 'Otros' ]
 
@@ -141,4 +141,4 @@ topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servici
 
 end
 
-=end
+
