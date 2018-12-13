@@ -50,7 +50,7 @@ class StudentsController < ApplicationController
 
   # PATCH/PUT /books/1
   def update
-    student = User.find(params[:id]).userable
+    student = User.find(params[:user_id]).userable
     if student.update(student_params)
       render json: student
     else
@@ -72,6 +72,6 @@ class StudentsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def student_params
-    params.require(:student).permit(:id_shedule, :id_tutor)
+    params.require(:student).permit(:id_shedule, :id_tutor, :user_id)
   end
 end
