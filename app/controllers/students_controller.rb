@@ -33,7 +33,7 @@ class StudentsController < ApplicationController
       end
     end
   end
-
+ 
   def create
     @student = Student.new(student_params)
 
@@ -72,6 +72,6 @@ class StudentsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def student_params
-    params.require(:student).permit(:id_shedule)
+    params.require(:student).permit(:id_shedule, :id_tutor)
   end
 end
