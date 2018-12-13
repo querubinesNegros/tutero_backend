@@ -1,6 +1,12 @@
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
+#               recreations GET    /recreations(.:format)                                                                   recreations#index
+#                           POST   /recreations(.:format)                                                                   recreations#create
+#                recreation GET    /recreations/:id(.:format)                                                               recreations#show
+#                           PATCH  /recreations/:id(.:format)                                                               recreations#update
+#                           PUT    /recreations/:id(.:format)                                                               recreations#update
+#                           DELETE /recreations/:id(.:format)                                                               recreations#destroy
 #                user_token POST   /user_token(.:format)                                                                    user_token#create
 #             users_current GET    /users/current(.:format)                                                                 users#current
 #             users_mytutor GET    /users/mytutor(.:format)                                                                 users#mytutor
@@ -8,6 +14,8 @@
 #                           GET    /users/type/:em/:end(.:format)                                                           users#typeuser
 #                users_type POST   /users/type(.:format)                                                                    users#typeuserp
 #                           GET    /posts/page/:page(.:format)                                                              posts#index
+#                           GET    /users/:user_id/tutor/tutorings/page/:page(.:format)                                     tutorings#index
+#                           GET    /users/:user_id/tutor/tutorings/pages(.:format)                                          tutorings#getpages
 #                           GET    /users/page/:page(.:format)                                                              users#index
 #               users_pages GET    /users/pages(.:format)                                                                   users#getpages
 #                           GET    /users/:user_id/tutor/certificado(.:format)                                              tutors#certificado
@@ -32,6 +40,12 @@
 #                           PATCH  /posts/:id(.:format)                                                                     posts#update
 #                           PUT    /posts/:id(.:format)                                                                     posts#update
 #                           DELETE /posts/:id(.:format)                                                                     posts#destroy
+#                           GET    /recreations(.:format)                                                                   recreations#index
+#                           POST   /recreations(.:format)                                                                   recreations#create
+#                           GET    /recreations/:id(.:format)                                                               recreations#show
+#                           PATCH  /recreations/:id(.:format)                                                               recreations#update
+#                           PUT    /recreations/:id(.:format)                                                               recreations#update
+#                           DELETE /recreations/:id(.:format)                                                               recreations#destroy
 #               filep_image GET    /fileps/:filep_id/image(.:format)                                                        images#show
 #                           PATCH  /fileps/:filep_id/image(.:format)                                                        images#update
 #                           PUT    /fileps/:filep_id/image(.:format)                                                        images#update
@@ -89,11 +103,6 @@
 #                           PUT    /tutorings/:id(.:format)                                                                 tutorings#update
 #                           DELETE /tutorings/:id(.:format)                                                                 tutorings#destroy
 #       user_tutor_students GET    /users/:user_id/tutor/students(.:format)                                                 students#index
-#                           POST   /users/:user_id/tutor/students(.:format)                                                 students#create
-#                   student GET    /students/:id(.:format)                                                                  students#show
-#                           PATCH  /students/:id(.:format)                                                                  students#update
-#                           PUT    /students/:id(.:format)                                                                  students#update
-#                           DELETE /students/:id(.:format)                                                                  students#destroy
 #                user_tutor GET    /users/:user_id/tutor(.:format)                                                          tutors#show
 #                           PATCH  /users/:user_id/tutor(.:format)                                                          tutors#update
 #                           PUT    /users/:user_id/tutor(.:format)                                                          tutors#update
@@ -111,6 +120,7 @@
 #                           PATCH  /topics/:id(.:format)                                                                    topics#update
 #                           PUT    /topics/:id(.:format)                                                                    topics#update
 #                           DELETE /topics/:id(.:format)                                                                    topics#destroy
+#          class_post_posts GET    /class_posts/:class_post_id/posts(.:format)                                              posts#index
 #           class_post_post GET    /class_posts/:class_post_id/posts/:id(.:format)                                          posts#show
 #               class_posts GET    /class_posts(.:format)                                                                   class_posts#index
 #                           POST   /class_posts(.:format)                                                                   class_posts#create
@@ -118,6 +128,18 @@
 #                           PATCH  /class_posts/:id(.:format)                                                               class_posts#update
 #                           PUT    /class_posts/:id(.:format)                                                               class_posts#update
 #                           DELETE /class_posts/:id(.:format)                                                               class_posts#destroy
+#                 schedules GET    /schedules(.:format)                                                                     schedules#index
+#                           POST   /schedules(.:format)                                                                     schedules#create
+#                           GET    /schedules/:id(.:format)                                                                 schedules#show
+#                           PATCH  /schedules/:id(.:format)                                                                 schedules#update
+#                           PUT    /schedules/:id(.:format)                                                                 schedules#update
+#                           DELETE /schedules/:id(.:format)                                                                 schedules#destroy
+#                 tutorings GET    /tutorings(.:format)                                                                     tutorings#index
+#                           POST   /tutorings(.:format)                                                                     tutorings#create
+#                           GET    /tutorings/:id(.:format)                                                                 tutorings#show
+#                           PATCH  /tutorings/:id(.:format)                                                                 tutorings#update
+#                           PUT    /tutorings/:id(.:format)                                                                 tutorings#update
+#                           DELETE /tutorings/:id(.:format)                                                                 tutorings#destroy
 #        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 # rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
 #        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show

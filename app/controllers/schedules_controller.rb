@@ -8,9 +8,10 @@ class SchedulesController < ApplicationController
       msg = "Loaded schedules user"
       schedules = User.find(params[:user_id]).userable.schedules
     else
-      schedules = Schedule.order("created_at DESC")
+      schedules = Schedule.all
       msg = "Loaded every schedules"
     end
+    
     render json: schedules, status: :ok, message: msg
   end
 
