@@ -125,7 +125,7 @@
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 #
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   post 'user_token' => 'user_token#create'
   get 'users/current' => 'users#current'
@@ -140,12 +140,15 @@ Rails.application.routes.draw do
   get '/users/:user_id/tutor/certificado' =>  'tutors#certificado'
   post '/users/cmp_psw' => 'users#cmpass'
   get '/users/:user_id/admin/estadisticas' => 'admins#estadisticas'
+  get '/questions/search/:searchText' =>  'questions#search'
   
   #resources :users 
   get '/posts/pages' =>  'posts#getpages'
   resources :socials 
   resources :careers
   resources :posts
+  resources :answers
+  resources :questions
 
   
   
