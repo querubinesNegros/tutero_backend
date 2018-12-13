@@ -50,7 +50,7 @@ class StudentsController < ApplicationController
 
   # PATCH/PUT /books/1
   def update
-    student = Student.find(params[:id])
+    student = User.find(params[:id]).userable
     if student.update(student_params)
       render json: student
     else
