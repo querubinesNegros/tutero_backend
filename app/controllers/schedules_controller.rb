@@ -3,7 +3,6 @@ class SchedulesController < ApplicationController
     #Si es tutor o si coincide el id buscado con el usuario actual, retorna los horarios del usuario correspondiente
     cond = current_user && (current_user.userable_type == "Tutor" || params[:user_id].to_i == current_user.id.to_i)
     print("*******\n")
-    print(current_user.id)
     if params[:user_id].present? && cond
       msg = "Loaded schedules user"
       schedules = User.find(params[:user_id]).userable.schedules
