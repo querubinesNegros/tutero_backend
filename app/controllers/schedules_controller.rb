@@ -36,6 +36,7 @@ class SchedulesController < ApplicationController
       if user.schedule_ids = params[:ids][:schedule_ids]
         print(user.schedules)
         user = User.find(current_user.id)
+=begin
         if user.userable_type == "Student"
           student_id = user.userable.id
           student = Student.find(student_id)
@@ -53,6 +54,7 @@ class SchedulesController < ApplicationController
           tutorToAssign.save
           MailsSender2Job.perform_later student_id
         end
+=end
         user = user.userable
 
         render json: user.schedules, status: :created, message: "Add schedule to user"
