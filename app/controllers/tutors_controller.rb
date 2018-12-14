@@ -3,6 +3,10 @@ class TutorsController < ApplicationController
     tutors = Tutor.order("created_at DESC")
     render json: tutors, status: :ok
   end
+  def career
+     tutors = Tutor.careerTutors(params[:career_id])
+     render json: tutors, status: :ok
+  end
 
   def show
     type = User.find(params[:user_id]).userable_type

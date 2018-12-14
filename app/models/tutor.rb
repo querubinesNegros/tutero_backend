@@ -17,6 +17,10 @@ class Tutor < ApplicationRecord
   # validates :ammountStudents: presence: true, numericality: { only_integer: true }
 
   #default_scope { joins(:user) }
+  
+ def self.careerTutors(career_id)
+  User.where(career_id: career_id, userable_type: "Tutor")
+ end
 
   def self.horarios(id)
     joins(:schedules).where("tutor_id = ?", id).pluck("schedules.name", :hour)
@@ -42,6 +46,7 @@ class Tutor < ApplicationRecord
     #Tutoring.select("type_t , duration, date, score, review" ).joins(:student).where("tutor_id = ?" ,userable_id)
     #Tutor.joins(:tutorings, :students, :user).where("students.tutor_id =  ? ",userable_id).select("score , review , name")
   end
+  
 
   def self.findByCarrer(studentCarrer)
     joins(user: :career).where("careers.name LIKE ?", studentCarrer).select("tutors.*")

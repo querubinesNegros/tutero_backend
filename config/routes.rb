@@ -168,7 +168,8 @@ Rails.application.routes.draw do
   get '/users/:user_id/tutor/certificado' =>  'tutors#certificado'
   post '/users/cmp_psw' => 'users#cmpass'
   get '/users/:user_id/admin/estadisticas' => 'admins#estadisticas'
-  
+  get '/tutors/career/:career_id' => 'tutors#career'
+
   get '/users/:user_id/tutor/score' =>  'tutors#score'
   
   #resources :users 
