@@ -23,6 +23,7 @@
 topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servicios de bienestar', 
   'Tramites Administrativos', 'Problemas personales', 'Plan de estudios', 'Otros' ]
 
+=begin 
 10.times do
   #Creamos una carrera
   care =  Career.new( name: Faker::Educator.course)
@@ -135,9 +136,46 @@ topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servici
       student.schedules << miercoles
       student.schedules << jueves      
     end
-    #finalmente a cada estudiante le asignamos una tutoria    
-    
-    
+    #finalmente a cada estudiante le asignamos una tutoria         
   end
-
+  
 end
+=end
+
+topic = Topic.find(rand(1..8))
+question1 = Question.new(content: "Que diferencia hay entre la asignatura: Sistemas de Informacion y la asignatura: 
+  Sistemas de informacion gerencial?")
+question1.student = Student.first
+question1.topic = topic 
+question1.save
+answer1 = Answer.new(content: "Sistemas de informacion gerencial es de 4 creditos, mientras que 
+  Sistemas de Informacion es de 3")
+answer1.question = question1
+answer1.user = Tutor.first.user
+answer1.save
+answer2 = Answer.new(content: "Sistemas de informacion gerencial es ofrecida por la Facultad de Ciencias 
+  Economicas") 
+answer2.question = question1       
+answer2.user = Tutor.first.user
+answer2.save
+
+topic = Topic.find(rand(1..8))
+question2 = Question.new(content: "Cuales son las condiciones para perder la calidad de estudiante?")
+question2.student = Student.last
+question2.topic = topic 
+question2.save
+answer21 = Answer.new(content: "Tener un PAPA por debajo de 2.95")
+answer21.question = question2
+answer21.user = Tutor.last.user
+answer21.save
+answer22 = Answer.new(content: "No contar con creditos suficientes para terminar el plan de estudios") 
+answer22.question = question2       
+answer22.user = Tutor.first.user
+answer22.save
+
+topic = Topic.find(rand(1..8))
+question3 = Question.new(content: "Cual es la tematica de la asignatura Gobierno Electronico?")
+question3.student = Student.last
+question3.topic = topic 
+question3.save
+

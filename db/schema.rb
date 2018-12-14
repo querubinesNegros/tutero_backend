@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2018_12_10_224657) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +20,16 @@ ActiveRecord::Schema.define(version: 2018_12_10_224657) do
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.text "content"
+    t.bigint "question_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "careers", force: :cascade do |t|
@@ -73,6 +85,16 @@ ActiveRecord::Schema.define(version: 2018_12_10_224657) do
     t.index ["class_post_id"], name: "index_posts_on_class_post_id"
   end
 
+
+  create_table "questions", force: :cascade do |t|
+    t.text "content"
+    t.bigint "student_id"
+    t.bigint "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_questions_on_student_id"
+    t.index ["topic_id"], name: "index_questions_on_topic_id"
+  end
   create_table "recreations", force: :cascade do |t|
     t.string "path"
     t.string "name"
@@ -156,8 +178,12 @@ ActiveRecord::Schema.define(version: 2018_12_10_224657) do
     t.index ["userable_type", "userable_id"], name: "index_users_on_userable_type_and_userable_id"
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "posts", "admins"
   add_foreign_key "posts", "class_posts"
+  add_foreign_key "questions", "students"
+  add_foreign_key "questions", "topics"
   add_foreign_key "schedules_students", "schedules"
   add_foreign_key "schedules_students", "students"
   add_foreign_key "schedules_tutors", "schedules"

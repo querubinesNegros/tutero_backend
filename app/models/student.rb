@@ -16,6 +16,7 @@ class Student < ApplicationRecord
   has_one :user, as: :userable
   has_and_belongs_to_many :schedules
   has_many :tutorings
+  has_many :questions
 
 
    #validates :age, presence: true, numericality: {only_integer: true,
