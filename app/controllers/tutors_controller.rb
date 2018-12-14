@@ -31,7 +31,7 @@ class TutorsController < ApplicationController
   def score 
     if current_user.userable_type = "Admin" || (current_user.userable_type == "Tutor" && current_user.id == params[:user_id])
       tutor_id = User.find(params[:user_id]).userable_id
-      render json: {data: { score: Tutor.promScoreTutorings(tutor.id), hours: Tutor.totalHoursTutorings(tutor.id) }, status: :ok
+      render json: {data: { score: Tutor.promScoreTutorings(tutor.id), hours: Tutor.totalHoursTutorings(tutor.id) }}, status: :ok
     else
       render json:  status: :non_authoritative_information
     end
