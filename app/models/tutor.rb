@@ -18,8 +18,13 @@ class Tutor < ApplicationRecord
 
   #default_scope { joins(:user) }
   
- def self.careerTutors(career_id)
-  User.where(career_id: career_id, userable_type: "Tutor")
+ def self.careerTutors(career_id, type)
+  if type == 0
+    User.where( userable_type: "Tutor")
+  else
+    User.where(career_id: career_id, userable_type: "Tutor")
+  end
+  
  end
 
   def self.horarios(id)

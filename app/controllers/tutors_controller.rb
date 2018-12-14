@@ -4,8 +4,15 @@ class TutorsController < ApplicationController
     render json: tutors, status: :ok
   end
   def career
-     tutors = Tutor.careerTutors(params[:career_id])
-     render json: tutors, status: :ok
+    tutors = []
+      if params[:career_id] == "all"
+        tutors = Tutor.careerTutors(params[:career_id],0)
+        render json: tutors, status: :ok
+      else
+        tutors = Tutor.careerTutors(params[:career_id], 1)
+        render json: tutors, status: :ok
+      end
+     
   end
 
   def show
