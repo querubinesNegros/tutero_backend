@@ -169,6 +169,8 @@ Rails.application.routes.draw do
   post '/users/cmp_psw' => 'users#cmpass'
   get '/users/:user_id/admin/estadisticas' => 'admins#estadisticas'
   
+  get '/users/:user_id/tutor/score' =>  'tutors#score'
+  
   #resources :users 
   get '/posts/pages' =>  'posts#getpages'
   resources :socials 

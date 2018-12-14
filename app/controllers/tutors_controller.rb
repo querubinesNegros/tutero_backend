@@ -27,7 +27,15 @@ class TutorsController < ApplicationController
       end
     end
   end
-
+  def 
+    if current_user.userable_type = "Admin" || (current_user.userable_type == "Tutor" && current_user.id == params[:user_id]
+      tutor_id = User.find(params[:user_id]).userable_id
+      render json: Tutor.promScoreTutorings(tutor.id), status: :ok
+    else
+      render json:  status: :non_authoritative_information
+    end
+    
+  end
   def create
     @tutor = Tutor.new(tutor_params)
     if @tutor.save
