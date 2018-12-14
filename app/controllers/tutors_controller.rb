@@ -40,12 +40,13 @@ class TutorsController < ApplicationController
   end
 
   def score 
-    if current_user.userable_type = "Admin" || (current_user.userable_type == "Tutor" && current_user.id == params[:user_id])
+
+   # if current_user.userable_type = "Admin" || (current_user.userable_type == "Tutor" && current_user.id == params[:user_id])
       tutor_id = User.find(params[:user_id]).userable_id
-      render json: {data: { score: Tutor.promScoreTutorings(tutor.id), hours: Tutor.totalHoursTutorings(tutor.id) }}, status: :ok
-    else
-      render json: {status: "FAIL", message: "You don't have access" }, status: :non_authoritative_information
-    end
+      render json: {score: Tutor.promScoreTutorings(tutor_id), hours: Tutor.totalHoursTutorings(tutor_id) }, status: :ok
+   # else
+   #   render json: {status: "FAIL", message: "You don't have access" }, status: :non_authoritative_information
+   # end
     
   end
   def create
