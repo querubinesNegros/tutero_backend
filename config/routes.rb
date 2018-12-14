@@ -171,7 +171,7 @@ Rails.application.routes.draw do
   get '/tutors/career/:career_id' => 'tutors#career'
 
   get '/users/:user_id/tutor/score' =>  'tutors#score'
-  
+  get '/users/:user_id/student/get_tutors' =>  'tutors#get_tutors'
   #resources :users 
   get '/posts/pages' =>  'posts#getpages'
   resources :socials 

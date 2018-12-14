@@ -72,6 +72,6 @@ class StudentsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def student_params
-    params.require(:student).permit(:id_shedule, :id_tutor, :user_id)
+    params.require(:student).permit (:pbm, :stratus, :age, :tutor_id)
   end
 end

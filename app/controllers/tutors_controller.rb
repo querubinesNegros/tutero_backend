@@ -9,12 +9,21 @@ class TutorsController < ApplicationController
         tutors = Tutor.careerTutors(params[:career_id],0)
         render json: tutors, status: :ok
       else
-        tutors = Tutor.careerTutors(params[:career_id], 1)
+        tutors = Tutor.careerTutors(params[:career_id], 1)  
         render json: tutors, status: :ok
       end
      
   end
-
+  def get_tutors
+    user = current_user
+    print(current_user.career_id)
+    if user.userable_type == "Student"
+      tutors = Tutor.careerTutors(user.career_id, 1)
+      render json: tutors, status: :ok
+    else
+      render status: :not_found
+    end
+  end
   def show
     type = User.find(params[:user_id]).userable_type
     if type == "Tutor"
