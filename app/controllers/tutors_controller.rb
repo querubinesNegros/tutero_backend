@@ -33,7 +33,7 @@ class TutorsController < ApplicationController
       tutor_id = User.find(params[:user_id]).userable_id
       render json: {data: { score: Tutor.promScoreTutorings(tutor.id), hours: Tutor.totalHoursTutorings(tutor.id) }}, status: :ok
     else
-      render json: {status: "FAIL", message: "You don't have access " + }, status: :non_authoritative_information
+      render json: {status: "FAIL", message: "You don't have access" }, status: :non_authoritative_information
     end
     
   end
