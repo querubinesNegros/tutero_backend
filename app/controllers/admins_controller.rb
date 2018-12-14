@@ -46,29 +46,29 @@ class AdminsController < ApplicationController
     admin.destroy
   end
 
-  def estadisticas    
-    data1  = Student.pbmStatistics 
-    data2  = Student.stratusStatistics
-    data3  = Student.ageStatistics
-    data4  = Tutoring.topicStatistics
+  def estadisticas
+    data1 = Student.pbmStatistics
+    data2 = Student.stratusStatistics
+    data3 = Student.ageStatistics
+    data4 = Tutoring.topicStatistics
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = EstadisticasPdf.new()      
-        send_data pdf.render, filename: "estadisticas_#{DateTime.now.strftime('-%m-%d-%Y')}.pdf", 
+        pdf = EstadisticasPdf.new()
+        send_data pdf.render, filename: "estadisticas_#{DateTime.now.strftime("-%m-%d-%Y")}.pdf",
                               disposition: "inline"
-      end   
+      end
       format.json do
         render json: {
           estudiantes_por_PBM: data1,
           estudiantes_por_estrato: data2,
           estudiantes_por_edad: data3,
-          frecuencia_temas_tutorias: data4
+          frecuencia_temas_tutorias: data4,
         }.to_json
-      end        
+      end
     end
   end
-  
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

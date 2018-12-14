@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_09_230315) do
+
+ActiveRecord::Schema.define(version: 2018_12_10_224657) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 2018_12_09_230315) do
     t.index ["class_post_id"], name: "index_posts_on_class_post_id"
   end
 
+
   create_table "questions", force: :cascade do |t|
     t.text "content"
     t.bigint "student_id"
@@ -91,6 +94,12 @@ ActiveRecord::Schema.define(version: 2018_12_09_230315) do
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_questions_on_student_id"
     t.index ["topic_id"], name: "index_questions_on_topic_id"
+  end
+  create_table "recreations", force: :cascade do |t|
+    t.string "path"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "schedules", force: :cascade do |t|

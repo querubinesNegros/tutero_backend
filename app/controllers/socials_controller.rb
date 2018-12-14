@@ -37,13 +37,10 @@ class SocialsController < ApplicationController
       google_a.save
 
       google_user.save
-      
 
       @user = User.search(params["email"])[0]
       knock_token = Knock::AuthToken.new payload: {sub: @user.id}
       render json: knock_token
-
-     
     else
       knock_token = Knock::AuthToken.new payload: {sub: @user.id}
       render json: knock_token
