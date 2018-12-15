@@ -139,9 +139,6 @@ topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servici
   end
   
 end
-<<<<<<< HEAD
-
-=======
 =end
 
 topic = Topic.find(rand(1..8))
@@ -180,5 +177,4 @@ question3 = Question.new(content: "Cual es la tematica de la asignatura Gobierno
 question3.student = Student.last
 question3.topic = topic 
 question3.save
->>>>>>> develop
 
