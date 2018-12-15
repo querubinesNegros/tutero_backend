@@ -20,6 +20,7 @@ class User < ApplicationRecord
   belongs_to :career, optional: :true
   belongs_to :userable, polymorphic: true, optional: true
   has_many :tutorings
+  has_many :answers
   has_secure_password :validations => false
   
   VALID_EMAIL_UNAL = /(([a-zA-Z]+_[a-zA-Z]+)||([a-zA-Z]+))@unal.edu.co/i

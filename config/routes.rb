@@ -147,8 +147,10 @@
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 #
+
 Rails.application.routes.draw do
   resources :recreations
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   post 'user_token' => 'user_token#create'
   get 'users/current' => 'users#current'
@@ -172,11 +174,15 @@ Rails.application.routes.draw do
 
   get '/users/:user_id/tutor/score' =>  'tutors#score'
   get '/users/:user_id/student/get_tutors' =>  'tutors#get_tutors'
+  get '/questions/search/:searchText' =>  'questions#search'
+  
   #resources :users 
   get '/posts/pages' =>  'posts#getpages'
   resources :socials 
   resources :careers
   resources :posts
+  resources :answers
+  resources :questions
 
   resources :recreations
 
