@@ -74,6 +74,63 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])    
     render json: @user    
   end
+  
+  def changerol
+    if (current_user.userable_type == "Admin")
+      user_id = params[:user_id]
+      
+      rol = params[:rol]
+      user = User.find(user_id)
+      rol_actual = user.userable_type
+      rol_id  = user.userable_id
+      if rol_actual == "Student"
+        student = Student.find(rol_id)
+        student.questions.destroy_all 
+        student.destroy  
+      end
+
+      if rol_actual == "Tutor"
+        tutor = Tutor.find(rol_id)        
+        students = Student.where(tutor_id: rol_id)
+        students.each do |st|
+          st.tutor_id = nil
+          st.save
+        end
+        tutor = Tutor.find(rol_id)
+        tutor.destroy
+
+
+      end
+
+      if rol == "Tutor"
+        tutor = Tutor.new
+        tutor.ammountStudents = 0
+        tutor.save
+        tutor.user = user
+      end
+      if rol == "Student"
+        student = Student.new
+        user.career_id = nil
+        user.save
+        student.save
+        student.user = user
+        student.save
+      end
+      if rol == "Admin"
+        admin = Admin.new
+        user.career_id = nil
+        user.save
+        admin.save
+
+        admin.user = user
+        admin.save
+      end
+    
+     render json: user, status: :ok 
+    
+
+    end
+  end
 
   def create
     user = User.new(user_params)

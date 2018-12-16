@@ -1,7 +1,7 @@
 class Question < ApplicationRecord
   belongs_to :student
   belongs_to :topic
-  has_many :answers
+  has_many :answers, dependent: :destroy
 
   validates :content, presence: true, length: {minimum: 12}
 

@@ -21,8 +21,8 @@ class AdminsController < ApplicationController
   end
 
   def create
-    admin = Admin.new(admin_params)
-
+    admin = Admin.new()
+    
     if admin.save
       render json: admin, status: :created, location: admin
     else

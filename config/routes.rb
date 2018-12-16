@@ -158,12 +158,14 @@ Rails.application.routes.draw do
   post   '/users/create'   => 'users#create'
   get '/users/type/:em/:end' =>  'users#typeuser' 
   post '/users/type/' =>  'users#typeuserp' 
- 
+  patch '/users/:user_id/rol' => 'users#changerol'
+
   get '/posts/page/:page' =>  'posts#index' 
   
   get '/users/:user_id/tutor/tutorings/page/:page' => 'tutorings#index'
   get '/users/:user_id/tutor/tutorings/pages' =>  'tutorings#getpages'
   
+
   
   get '/users/page/:page' =>  'users#index' 
   get '/users/pages' =>  'users#getpages'
