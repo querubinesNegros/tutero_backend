@@ -86,6 +86,7 @@ class UsersController < ApplicationController
       if rol_actual == "Student"
         student = Student.find(rol_id)
         student.questions.destroy_all 
+        student.tutorings.destroy_all
         student.destroy  
       end
 
