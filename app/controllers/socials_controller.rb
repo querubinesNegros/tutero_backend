@@ -31,6 +31,10 @@ class SocialsController < ApplicationController
         print("**********************\n")
         print(student.id)
         google_user.userable = student
+      when "Tutor"
+        tutor = Tutor.new()
+        tutor.save
+        google_user.userable = tutor
       end
       google_a = GoogleAcount.new()
       google_a.email = params[:email]
