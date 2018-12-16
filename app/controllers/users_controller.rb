@@ -106,6 +106,7 @@ class UsersController < ApplicationController
         tutor = Tutor.new
         tutor.ammountStudents = 0
         tutor.save
+        user.career_id = nil
         tutor.user = user
       end
       if rol == "Student"
