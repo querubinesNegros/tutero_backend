@@ -22,7 +22,6 @@ end
 topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servicios de bienestar', 
   'Tramites Administrativos', 'Problemas personales', 'Plan de estudios', 'Otros' ]
 
-=begin 
 10.times do
   #Creamos una carrera
   care =  Career.new( name: Faker::Educator.course)
@@ -139,7 +138,7 @@ topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servici
   end
   
 end
-=end
+
 
 topic = Topic.find(rand(1..8))
 question1 = Question.new(content: "Que diferencia hay entre la asignatura: Sistemas de Informacion y la asignatura: 
