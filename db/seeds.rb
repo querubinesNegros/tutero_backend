@@ -107,10 +107,10 @@ topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servici
     topic = Topic.new(name: topics [rand(0 .. 7)] )
     topic.save
     
-    tutoring = Tutoring.new(type_t: "Presencial", duration: rand(1 .. 5), noteTutor: Faker::HowIMetYourMother.quote )
+    tutoring = Tutoring.new(type_t: "Presencial", duration: rand(1 .. 5), noteTutor: Faker::TvShows::HowIMetYourMother.quote )
     tutoring.date = Faker::Date.between(2.days.ago, Date.today)
     tutoring.score  = rand(5)
-    tutoring.review = Faker::BackToTheFuture.quote
+    tutoring.review = Faker::TvShows::BackToTheFuture.quote
     tutoring.student =   student
     tutoring.topic_id = topic.id
     tutoring.save
