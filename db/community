@@ -42,7 +42,8 @@ topics = ['Normatividad', 'Proyeccion academica', 'Tutoria academica' , 'Servici
   userx.save
   #El admin puede tener uno o más posts, en este caso solo le asociaomos un post
   
-  post = Post.new(name: Faker::Educator.campus , addressedTo:"Everyone", description: Faker::Community.quotes )
+  post = Post.new(name: Faker::Educator.campus , addressedTo:"Everyone", description:Faker::TvShows::Community
+.quotes )
 
   post.admin = admin
   classPost = ClassPost.new(name: Faker::Hipster.word)
