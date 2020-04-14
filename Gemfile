@@ -42,8 +42,8 @@ gem 'squid', '~> 1.2'
 # Reduces boot times through caching; required in config/boot.rb
 #gem 'bootsnap', '>= 1.1.0', require: false
 #gem 'faker', '~> 1.9', '>= 1.9.1'
-#gem 'faker', github: 'stympy/faker.git'
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'faker', github: 'stympy/faker.git'
+#gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'will_paginate', '~> 3.1.0'
 # Esta gema nos permite habilita "has_secure_password" en Active Record
 gem 'bcrypt', '~> 3.1.7'
